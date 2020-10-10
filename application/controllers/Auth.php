@@ -1,0 +1,17 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Auth extends CI_Controller
+{
+
+    public function login()
+    {
+        $this->load->view('auth/login');
+    }
+    public function register()
+    {
+        $this->load->view('auth/register');
+    }
+}
+
+/* End of file Auth.php */
