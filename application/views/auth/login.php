@@ -23,7 +23,13 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
+        <div class="row  justify-content-center">
+
+            <!-- <img src="<?= base_url() . 'assets/dist/img/logo.png' ?>" alt="AdminLTE Logo" class="brand-image " style="width: 120;"> -->
+        </div>
         <div class="login-logo">
+            <img src="<?= base_url() . 'assets/dist/img/logo.png' ?>" alt="AdminLTE Logo" class="brand-image " style="width: 80px;">
+
             <a href="index2.html">Sample<b>In</b></a>
         </div>
         <!-- /.login-logo -->
@@ -41,7 +47,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
+                        <input type="password" class="form-control" placeholder="Password" autocomplete="on">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -54,7 +60,7 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Log Ins</button>
+                            <button type="submit" class="btn btn-primary btn-block">Log In</button>
                         </div>
                         <!-- /.col -->
                     </div>
