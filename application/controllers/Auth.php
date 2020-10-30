@@ -29,7 +29,7 @@ class Auth extends CI_Controller
             $auth->Register($post);
             if ($this->db->affected_rows() > 0) {
                 $this->session->set_flashdata('success', 'User berhasil didaftarkan!');
-                redirect('dashboard', 'refresh');
+                redirect('user', 'refresh');
             }
         }
     }

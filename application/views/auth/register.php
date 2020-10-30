@@ -118,10 +118,10 @@
                     <div class="mb-3">
                         <div class="input-group <?= form_error('frole') ? 'is-invalid' : '' ?>">
                             <select name="frole" id="role" class="form-control <?= form_error('frole') ? 'is-invalid' : '' ?>" name="frole">
-                                <option selected hidden value="">Pilih role</option>
+                                <option selected hidden value="">-- Pilih role --</option>
                                 <option value="2" <?= set_value('frole') == "2" ? "selected" : '' ?>>Sales</option>
                                 <option value="3" <?= set_value('frole') == "3" ? "selected" : '' ?>>Produk Dev</option>
-                                <option value="4" <?= set_value('frole') == "4" ? "selected" : '' ?>>Enginnering</option>
+                                <option value="4" <?= set_value('frole') == "4" ? "selected" : '' ?>>Engineering</option>
                                 <option value="1" <?= set_value('frole') == "1" ? "selected" : '' ?>>Administrator</option>
                             </select>
                             <div class="input-group-append">

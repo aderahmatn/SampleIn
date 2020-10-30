@@ -67,6 +67,10 @@ class Auth_m extends CI_Model
         $this->role = $post['frole'];
         $this->db->insert($this->_table, $this);
     }
+    public function Delete($id)
+    {
+        return $this->db->delete($this->_table, array('idUser' => $id));
+    }
 }
 
 /* End of file Auth_m.php */
