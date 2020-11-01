@@ -46,12 +46,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="fpicsales">PIC Sales</label>
-                                <select name="fpicsales" id="fpicsales" class="custom-select <?= form_error('fpicsales') ? 'is-invalid' : '' ?>">
-                                    <option selected hidden value="">-- Pilih sales -- </option>
-                                    <option value="udin">udin</option>
-                                    <option value="asep">asep</option>
-                                    <option value="maman">maman</option>
-                                </select>
+                                <input type="text" name="fpicsales" value="<?= $this->session->userdata('nik'); ?>" hidden>
+                                <input type="text" value="<?= $this->session->userdata('name'); ?>" class="form-control" readonly>
                                 <div class="invalid-feedback">
                                     <?= form_error('fpicsales') ?>
                                 </div>

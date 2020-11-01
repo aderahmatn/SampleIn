@@ -10,11 +10,36 @@ class Auth extends CI_Controller
         $this->load->model('auth_m');
     }
 
-
+    public function process()
+    {
+        $post = $this->input->post(null, TRUE);
+        $query = $this->auth_m->login($post);
+        if ($query->num_rows() > 0) {
+            $row = $query->row();
+            $params = array(
+                'nik' => $row->nik,
+                'role' => $row->role,
+                'uname' => $row->username,
+                'name' => $row->nama,
+                'status' => 'login'
+            );
+            $this->session->set_userdata($params);
+            redirect('dashboard', 'refresh');
+        } else {
+            $this->session->set_flashdata('error', 'username / password salah!');
+            redirect('auth/login', 'refresh');
+        }
+    }
     public function login()
     {
-        $data['user'] = $this->auth_m->GetAll();
-        $this->load->view('auth/login', $data);
+        check_already_login();
+        $this->load->view('auth/login');
+    }
+    public function logout()
+    {
+        $params = array('nik', 'role', 'status', 'uname');
+        $this->session->unset_userdata($params);
+        redirect('auth/login', 'refresh');
     }
     public function register()
     {

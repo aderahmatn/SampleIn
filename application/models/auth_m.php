@@ -49,12 +49,10 @@ class Auth_m extends CI_Model
             ],
         ];
     }
-
     public function GetAll()
     {
         return $this->db->get($this->_table)->result();
     }
-
     public function Register()
     {
         $post = $this->input->post();
@@ -70,6 +68,15 @@ class Auth_m extends CI_Model
     public function Delete($id)
     {
         return $this->db->delete($this->_table, array('idUser' => $id));
+    }
+    public function login($post)
+    {
+        $this->db->select('*');
+        $this->db->from('users');
+        $this->db->where('username', $post['fusername']);
+        $this->db->where('password', md5($post['fpassword']));
+        $query = $this->db->get();
+        return $query;
     }
 }
 

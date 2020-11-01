@@ -7,7 +7,6 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
                     <li class="breadcrumb-item active">Buat Permintaan</li>
                 </ol>
             </div><!-- /.col -->
@@ -25,7 +24,7 @@
                 <!-- general form elements -->
                 <div class="card card-outline card-secondary">
                     <!-- form start -->
-                    <form role="form" method="POST" action="" autocomplete="off">
+                    <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
                         <div class="card-body">
                             <div class="row">
@@ -44,6 +43,13 @@
                                             <?= form_error('ftgl') ?>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="ffoto">Foto Produk</label>
+                                        <input type="file" class="form-control-file <?= form_error('ffoto') ? 'is-invalid' : '' ?>" id="ffoto" name="ffoto" placeholder="pilih foto">
+                                        <div class="invalid-feedback">
+                                            <?= form_error('ffoto') ?>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -55,14 +61,22 @@
                                             <?php } ?>
                                         </select>
                                         <div class="invalid-feedback">
-                                            <?php echo form_error('frole'); ?>
+                                            <?php echo form_error('fcustomer'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="fsales">Sales</label>
-                                        <input type="text" class="form-control <?= form_error('fsales') ? 'is-invalid' : '' ?>" id="fsales" name="fsales" placeholder="Nomor telpon">
+                                        <input type="text" class="form-control <?= form_error('fsales') ? 'is-invalid' : '' ?>" id="fsales" name="fsales" value="<?= $this->session->userdata('name'); ?>" readonly>
+                                        <input type="hidden" class="form-control" id="fnik" name="fnik" value="<?= $this->session->userdata('nik'); ?>">
                                         <div class="invalid-feedback">
                                             <?= form_error('fsales') ?>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fnote">Note</label>
+                                        <input type="text" class="form-control <?= form_error('fnote') ? 'is-invalid' : '' ?>" id="fnote" name="fnote" placeholder="Note">
+                                        <div class="invalid-feedback">
+                                            <?= form_error('fnote') ?>
                                         </div>
                                     </div>
                                 </div>

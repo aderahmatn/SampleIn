@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>AdminLTE 3 | Starter</title>
+    <title>SampleIn | <?= ucwords($this->uri->segment(1)); ?></title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/fontawesome-free/css/all.min.css' ?>">
@@ -56,14 +56,14 @@
                     <a href="<?= base_url('dashboard') ?>" class="nav-link active">Dashboard</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?= base_url('Profile') ?>" class="nav-link">Profile</a>
+                    <a href="<?= base_url('profile') ?>" class="nav-link">Profile</a>
                 </li>
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Logout</a>
+                    <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
                 </li>
             </ul>
         </nav>
@@ -85,7 +85,7 @@
                         <img src="<?= base_url() . 'assets/dist/img/user.jpg' ?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Ade Rahmat Nurdiyana</a>
+                        <a href="#" class="d-block"><?= ucwords($this->session->userdata('name')); ?></a>
                     </div>
                 </div>
 

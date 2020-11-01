@@ -67,9 +67,15 @@ class Customer_m extends CI_Model
         $this->deleted = 0;
         $this->db->update($this->_table, $this, array('idCustomer' => $post['fid']));
     }
-    public function GetAll()
+    public function GetAll($nik)
     {
-        return $this->db->order_by('created_at', 'desc')->where('deleted', 0)->get($this->_table)->result();
+        $this->db->select('*');
+        $this->db->join('users', 'users.nik = customers.picSales', 'left');
+        $this->db->from('customers');
+        $this->db->where('deleted', 0);
+        $this->db->where('picSales', $nik);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function Delete($id)

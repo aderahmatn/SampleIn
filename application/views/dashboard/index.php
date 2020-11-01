@@ -1,1 +1,1 @@
-hallo
+hallo <?= $this->session->userdata('name'); ?>

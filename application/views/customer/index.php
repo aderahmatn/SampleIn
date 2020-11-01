@@ -44,11 +44,10 @@
                                         <td><?= $no++ ?></td>
                                         <td><?= $dt->customer ?></td>
                                         <td><?= $dt->telpon ?></td>
-                                        <td><?= $dt->picSales ?></td>
+                                        <td><?= $dt->nama ?></td>
                                         <td><?= $dt->negara ?></td>
                                         <td width>
                                             <a href="<?= base_url('customer/edit/') . $dt->idCustomer ?>" class="btn btn-default btn-sm">edit</a>
-                                            <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'customer/delete/' . $dt->idCustomer ?>')">hapus</button>
                                         </td>
                                     </tr>
                                 <?php } ?>

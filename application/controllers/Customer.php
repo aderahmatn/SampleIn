@@ -7,13 +7,16 @@ class Customer extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        check_not_login();
         $this->load->model('customer_m');
     }
 
 
     public function index()
     {
-        $data['customer'] = $this->customer_m->GetAll();
+        $data['customer'] = $this->customer_m->GetAll(
+            $this->session->userdata('nik')
+        );
         $this->template->load('layout', 'customer/index', $data);
     }
 
