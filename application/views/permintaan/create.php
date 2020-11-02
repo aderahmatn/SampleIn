@@ -46,6 +46,9 @@
                                     <div class="form-group">
                                         <label for="ffoto">Foto Produk</label>
                                         <input type="file" class="form-control-file <?= form_error('ffoto') ? 'is-invalid' : '' ?>" id="ffoto" name="ffoto" placeholder="pilih foto">
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                            Format file yang didukung hanya JPG, JPEG, PNG. max. size 2Mb
+                                        </small>
                                         <div class="invalid-feedback">
                                             <?= form_error('ffoto') ?>
                                         </div>
@@ -95,9 +98,9 @@
                                 <div class="product row" id="entry1">
                                     <div class="col-md-3 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fproduct') ? 'is-invalid' : '' ?>" id="fproduct" name="fproduct[]" placeholder="Nama produk">
+                                            <input type="text" class="form-control <?= form_error('fproduct[]') ? 'is-invalid' : '' ?>" id="fproduct" name="fproduct[]" placeholder="Nama produk">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fproduct') ?>
+                                                <?= form_error('fproduct[]') ?>
                                             </div>
                                         </div>
                                     </div>

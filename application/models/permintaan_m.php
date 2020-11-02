@@ -35,7 +35,7 @@ class Permintaan_m extends CI_Model
     public function upload_image()
     {
         $config['upload_path']          = './upload/product/';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['allowed_types']        = 'jpg|png|jpeg';
         $config['file_name']            = $this->idPermintaan;
         $config['overwrite']            = true;
         $config['max_size']             = 2048; // 2MB

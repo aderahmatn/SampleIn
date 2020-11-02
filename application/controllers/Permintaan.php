@@ -10,15 +10,15 @@ class Permintaan extends CI_Controller
         check_not_login();
         $this->load->model('customer_m');
         $this->load->model('permintaan_m');
+        $this->load->model('product_m');
     }
 
 
     public function create()
     {
-        $permintaan  = $this->permintaan_m;
+        $produk = $this->product_m;
         $validation = $this->form_validation;
-        $validation->set_rules($permintaan->rules());
-
+        $validation->set_rules($produk->rules());
         if ($validation->run() == FALSE) {
             $data['customer'] = $this->customer_m->GetAll(
                 $this->session->userdata('nik')
@@ -27,10 +27,26 @@ class Permintaan extends CI_Controller
             $this->template->load('layout', 'permintaan/create', $data);
         } else {
             $post = $this->input->post(null, TRUE);
-            $permintaan->create_permintaan($post);
+            $produk->save_batch($post);
             if ($this->db->affected_rows() > 0) {
-                $this->session->set_flashdata('success', 'User berhasil didaftarkan!');
-                redirect('permintaan', 'refresh');
+                $permintaan  = $this->permintaan_m;
+                $validation = $this->form_validation;
+                $validation->set_rules($permintaan->rules());
+
+                if ($validation->run() == FALSE) {
+                    $data['customer'] = $this->customer_m->GetAll(
+                        $this->session->userdata('nik')
+                    );
+                    $data['noreq'] = $this->permintaan_m->CheckNoPeq();
+                    $this->template->load('layout', 'permintaan/create', $data);
+                } else {
+                    $post = $this->input->post(null, TRUE);
+                    $permintaan->create_permintaan($post);
+                    if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('success', 'User berhasil didaftarkan!');
+                        redirect('permintaan', 'refresh');
+                    }
+                }
             }
         }
     }
