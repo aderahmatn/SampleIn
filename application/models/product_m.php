@@ -57,6 +57,17 @@ class Product_m extends CI_Model
         }
         return $this->db->insert_batch($this->_table, $data);
     }
+    public function get_by_id($id)
+    {
+        $this->db->select('*');
+        $this->db->where('idPermintaan', $id);
+        $this->db->where('permintaan.deleted', 0);
+        $this->db->join('users', 'users.nik = permintaan.sales', 'left');
+        $this->db->join('customers', 'customers.idCustomer = permintaan.idCustomer', 'left');
+        $this->db->from('permintaan');
+        $query = $this->db->get();
+        return $query->row();
+    }
 }
 
 /* End of file product_m.php */

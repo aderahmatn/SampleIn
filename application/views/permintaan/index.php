@@ -61,7 +61,7 @@
                                         </td>
                                         <td width>
                                             <!-- <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'user/delete/' . $dt->idUser ?>')">hapus</button> -->
-                                            <button class="btn btn-default btn-sm">Detail</button>
+                                            <a href="<?= base_url() . 'permintaan/detail/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Detail</a>
                                             <button class="btn btn-default btn-sm">Edit</button>
                                             <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'permintaan/delete/' . $key->idPermintaan ?>')">hapus</button>
                                         </td>
@@ -136,7 +136,7 @@
             "autoWidth": true,
             "info": false,
             "lengthChange": false,
-            "scrollY": 600,
+            "scrollY": 400,
             "paging": false,
             dom: 'Bfrtip',
             buttons: [{

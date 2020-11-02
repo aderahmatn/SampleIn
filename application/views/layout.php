@@ -63,7 +63,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?= base_url('auth/logout') ?>" class="nav-link">Logout</a>
+                    <a href="" data-toggle="modal" data-target="#logoutModal" class="nav-link">Logout</a>
                 </li>
             </ul>
         </nav>
@@ -196,7 +196,24 @@
         </footer>
     </div>
     <!-- ./wrapper -->
-
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Apakah anda yakin ingin logout?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="<?= site_url('auth/logout') ?>">Logout <i class="fas fa-sign-out-alt fa-sm"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Alert Config -->
     <script type="text/javascript">
         $(function() {
