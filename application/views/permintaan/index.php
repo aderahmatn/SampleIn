@@ -30,7 +30,6 @@
                                     <th>Customer</th>
                                     <th>Tanggal</th>
                                     <th>Sales</th>
-                                    <th>Qty Produk</th>
                                     <th>Foto</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -43,7 +42,6 @@
                                         <td><?= $key->customer ?></td>
                                         <td><?= $key->tanggal ?></td>
                                         <td><?= $key->nama ?></td>
-                                        <td><?= $key->noUrut ?></td>
                                         <td><img src="<?= base_url() . 'upload/product/' . $key->foto ?>" alt="..." class="img-thumbnail" style="height: 100px; width: 100px;"></td>
                                         <td>
                                             <?php if ($key->status == 1) { ?>

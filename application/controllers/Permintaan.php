@@ -62,12 +62,15 @@ class Permintaan extends CI_Controller
     }
     public function index()
     {
+
         $data['permintaan'] = $this->permintaan_m->get_all($this->session->userdata('nik'));
         $this->template->load('layout', 'permintaan/index', $data);
     }
     public function detail($id)
     {
+        $data['qty'] = $this->product_m->count_by_id($id);
         $data['detail'] = $this->permintaan_m->get_by_id($id);
+        $data['produk'] = $this->product_m->get_by_id($id);
         $this->template->load('layout', 'permintaan/detail', $data);
     }
 }

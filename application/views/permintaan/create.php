@@ -26,6 +26,7 @@
                     <!-- form start -->
                     <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
                         <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
+                        <input type="hidden" name="fid" value="<?= uniqid('req') ?>" style="display: none">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -56,6 +57,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="fsales">Sales</label>
+                                        <input type="text" class="form-control <?= form_error('fsales') ? 'is-invalid' : '' ?>" id="fsales" name="fsales" value="<?= ucwords($this->session->userdata('name')); ?>" readonly>
+                                        <input type="hidden" class="form-control" id="fnik" name="fnik" value="<?= $this->session->userdata('nik'); ?>">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="fcustomer">Customer</label>
                                         <select name="fcustomer" id="fcustomer" class="form-control custom-form <?= form_error('fcustomer') ? 'is-invalid' : '' ?>" name="fcustomer">
                                             <option selected hidden value="">-- Pilih Customer --</option>
@@ -65,14 +71,6 @@
                                         </select>
                                         <div class="invalid-feedback">
                                             <?php echo form_error('fcustomer'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fsales">Sales</label>
-                                        <input type="text" class="form-control <?= form_error('fsales') ? 'is-invalid' : '' ?>" id="fsales" name="fsales" value="<?= $this->session->userdata('name'); ?>" readonly>
-                                        <input type="hidden" class="form-control" id="fnik" name="fnik" value="<?= $this->session->userdata('nik'); ?>">
-                                        <div class="invalid-feedback">
-                                            <?= form_error('fsales') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -86,17 +84,17 @@
                             </div>
                             <hr>
                             <div class="row mb-2">
-                                <div class="col-md-3"><strong>Nama Produk</strong></div>
+                                <div class="col-md-2"><strong>Nama Produk</strong></div>
                                 <div class="col-md-2"><strong>Part No.</strong></div>
                                 <div class="col-md-2"><strong>Brand</strong></div>
                                 <div class="col-md-1"><strong>Qty</strong></div>
                                 <div class="col-md-2"><strong>Permintaan</strong></div>
-                                <div class="col-md-1"><strong>Due Date</strong></div>
+                                <div class="col-md-2"><strong>Due Date</strong></div>
                                 <div class="col-md-1"><a class="btn btn-success btn-block" id="btnAdd"><i class="fa fa-plus"></i></a></div>
                             </div>
                             <div id="products">
                                 <div class="product row" id="entry1">
-                                    <div class="col-md-3 mb-2">
+                                    <div class="col-md-2 mb-2">
                                         <div class="form-group">
                                             <input type="text" class="form-control <?= form_error('fproduct[]') ? 'is-invalid' : '' ?>" id="fproduct" name="fproduct[]" placeholder="Nama produk">
                                             <div class="invalid-feedback">
@@ -130,13 +128,19 @@
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fpermintaan') ? 'is-invalid' : '' ?>" id="fpermintaan" name="fpermintaan[]" placeholder="Permintaan">
+                                            <select name="fpermintaan[]" id="fpermintaan[]" class="form-control custom-form <?= form_error('fpermintaan[]') ? 'is-invalid' : '' ?>" name="fpermintaan[]">
+                                                <option selected hidden value="">Pilih</option>
+                                                <option value="1">SS/SO</option>
+                                                <option value="2">PJM</option>
+                                                <option value="3">SS E/T</option>
+                                                <option value="4">ADR Shanghai</option>
+                                            </select>
                                             <div class="invalid-feedback">
-                                                <?= form_error('fpermintaan') ?>
+                                                <?php echo form_error('fpermintaan[]'); ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-1 mb-2">
+                                    <div class="col-md-2 mb-2">
                                         <div class="form-group">
                                             <input type="date" class="form-control <?= form_error('fduedate') ? 'is-invalid' : '' ?>" id="fduedate" name="fduedate[]" placeholder="Due date">
                                             <div class="invalid-feedback">

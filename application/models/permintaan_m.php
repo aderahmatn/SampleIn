@@ -51,7 +51,7 @@ class Permintaan_m extends CI_Model
     public function create_permintaan()
     {
         $post = $this->input->post();
-        $this->idPermintaan = uniqid('req');
+        $this->idPermintaan = $post['fid'];
         $this->noPermintaan = $post['fno'];
         $this->idCustomer = $post['fcustomer'];
         $this->tanggal = $post['ftgl'];

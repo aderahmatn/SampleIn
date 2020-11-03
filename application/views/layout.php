@@ -53,10 +53,10 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?= base_url('dashboard') ?>" class="nav-link active">Dashboard</a>
+                    <a href="<?= base_url('dashboard') ?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' ? 'active' : '' ?><?= $this->uri->segment(1) == '' ? 'active' : '' ?>">Dashboard</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?= base_url('profile') ?>" class="nav-link">Profile</a>
+                    <a href="<?= base_url('profile') ?>" class="nav-link <?= $this->uri->segment(1) == 'profile' ? 'active' : '' ?>">Profile</a>
                 </li>
             </ul>
 
@@ -93,7 +93,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-file-signature"></i>
                                 <p>
                                     Permintaan
@@ -102,13 +102,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url('permintaan/create') ?>" class="nav-link">
+                                    <a href="<?= base_url('permintaan/create') ?>" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Buat permintaan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('permintaan') ?>" class="nav-link">
+                                    <a href="<?= base_url('permintaan') ?>" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List permintaan</p>
                                     </a>
@@ -139,7 +139,7 @@
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link <?= $this->uri->segment(1) == 'customer' ? 'active' : '' ?> <?= $this->uri->segment(1) == 'user' ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-database"></i>
                                 <p>
                                     Data Master
@@ -148,13 +148,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url() . 'customer' ?>" class="nav-link">
+                                    <a href="<?= base_url() . 'customer' ?>" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Master Customer</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('user') ?>" class="nav-link">
+                                    <a href="<?= base_url('user') ?>" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Master User</p>
                                     </a>

@@ -6,7 +6,7 @@ class Product_m extends CI_Model
     private $_table = "produk";
 
     public $idProduk;
-    public $noPermintaan;
+    public $idPermintaan;
     public $namaProduk;
     public $partNo;
     public $brand;
@@ -30,7 +30,7 @@ class Product_m extends CI_Model
     {
         $post = $this->input->post();
         $this->idProduk = uniqid('pro');
-        $this->noPermintaan = $post['fno'];
+        $this->idPermintaan = $post['fid'];
         $this->namaProduk = $post['fproduct'];
         $this->partNo = $post['fpartno'];
         $this->brand = $post['fbrand'];
@@ -44,7 +44,7 @@ class Product_m extends CI_Model
         foreach ($this->namaProduk as $dataproduk) {
             array_push($data, array(
                 'idproduk' => $this->idProduk . $index,
-                'noPermintaan' => $this->noPermintaan,
+                'idPermintaan' => $this->idPermintaan,
                 'namaProduk' => $this->namaProduk[$index],
                 'partNo' => $this->partNo[$index],
                 'brand' => $this->brand[$index],
@@ -61,12 +61,17 @@ class Product_m extends CI_Model
     {
         $this->db->select('*');
         $this->db->where('idPermintaan', $id);
-        $this->db->where('permintaan.deleted', 0);
-        $this->db->join('users', 'users.nik = permintaan.sales', 'left');
-        $this->db->join('customers', 'customers.idCustomer = permintaan.idCustomer', 'left');
-        $this->db->from('permintaan');
+        $this->db->where('produk.deleted', 0);
+        $this->db->from('produk');
         $query = $this->db->get();
-        return $query->row();
+        return $query->result();
+    }
+    public function count_by_id($id)
+    {
+        $query = $this->db->query("SELECT COUNT(*) as qty  FROM produk WHERE idPermintaan = '$id'");
+        $hasil = $query->row();
+
+        return $hasil;
     }
 }
 

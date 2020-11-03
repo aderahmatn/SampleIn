@@ -68,6 +68,8 @@
                         <span class="badge badge-success">Finished</span>
                     <?php } ?>
                     <br>
+                    <b>Foto Produk : </b> <a href="#" data-toggle="modal" data-target="#fotoProduk" class="text-primary">Lihat</a><br>
+
                 </div>
                 <!-- /.col -->
             </div>
@@ -88,46 +90,34 @@
                                 <th>Aplikasi</th>
                                 <th>Due Date</th>
                                 <th>Company</th>
-                                <th>Image</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Kabin Filter</td>
-                                <td>8100108-FK01p</td>
-                                <td>Disk</td>
-                                <td>1</td>
-                                <td>3</td>
-                                <td><small class="text-muted">tidak ada</small></td>
-                                <td>03/11/2020</td>
-                                <td><small class="text-muted">tidak ada</small></td>
-                                <td><a href="#" class="text-primary">Lihat</a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Air Filter</td>
-                                <td>1100098-FK01p</td>
-                                <td>Disk</td>
-                                <td>1</td>
-                                <td>3</td>
-                                <td><small class="text-muted">tidak ada</small></td>
-                                <td>03/11/2020</td>
-                                <td><small class="text-muted">tidak ada</small></td>
-                                <td><a href="#" class="text-primary">Lihat</a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Oil Filter</td>
-                                <td>7620099-FK01p</td>
-                                <td>Disk</td>
-                                <td>1</td>
-                                <td>3</td>
-                                <td><small class="text-muted">tidak ada</small></td>
-                                <td>03/11/2020</td>
-                                <td><small class="text-muted">tidak ada</small></td>
-                                <td><a href="#" class="text-primary">Lihat</a></td>
-                            </tr>
+                            <?php
+                            $no = 1;
+                            foreach ($produk as $key) { ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $key->namaProduk ?></td>
+                                    <td><?= $key->partNo ?></td>
+                                    <td><?= $key->brand ?></td>
+                                    <td><?= $key->qty ?></td>
+                                    <td><?= $key->permintaan ?></td>
+                                    <td>
+                                        <?php if ($key->aplikasi == null) { ?>
+                                            <small class="text-muted">tidak ada</small>
+                                        <?php }
+                                        echo $key->aplikasi ?>
+                                    </td>
+                                    <td><?= $key->duedate ?></td>
+                                    <td>
+                                        <?php if ($key->company == null) { ?>
+                                            <small class="text-muted">tidak ada</small>
+                                        <?php }
+                                        echo $key->company ?>
+                                    </td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -162,7 +152,7 @@
                 <div class="col-md-4">
                     <p class="lead text-sm">Note :</p>
                     <p class="text-muted well well-sm shadow-none mt-n3 text-sm">
-                        Ini adalah catatan pada permintaan
+                        <?= $detail->note ?>
                     </p>
                 </div>
                 <!-- /.col -->
@@ -199,6 +189,19 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="fotoProduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="<?= base_url() . 'upload/product/' . $detail->foto ?>" alt="..." class="img-thumbnail">
+            </div>
+            <div class=" modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Delete Confirm -->
 <script type="text/javascript">
     function deleteConfirm(url) {
