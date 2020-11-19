@@ -28,16 +28,28 @@
                             <img class="profile-user-img img-fluid img-circle" src="<?= base_url() . 'assets/dist/img/profile-blank.png' ?>" alt="User profile picture">
                         </div>
 
-                        <h3 class="profile-username text-center">Ade Rahmat Nurdiyana</h3>
+                        <h3 class="profile-username text-center"><?= ucwords($user->nama) ?></h3>
 
-                        <p class="text-muted text-center">Sales</p>
+                        <p class="text-muted text-center">
+                            <?php
+                            if ($user->role == 1) {
+                                echo "Admin";
+                            } elseif ($user->role == 2) {
+                                echo "Sales";
+                            } elseif ($user->role == 3) {
+                                echo "Product Development";
+                            } elseif ($user->role == 4) {
+                                echo "Engneering";
+                            }
+                            ?>
+                        </p>
 
                         <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
-                                <b>NIK</b> <a class="float-right">46899</a>
+                                <b>NIK</b> <a class="float-right"><?= $user->nik ?></a>
                             </li>
                             <li class="list-group-item">
-                                <b>Telpon</b> <a class="float-right">0877 7645 1664</a>
+                                <b>Email</b> <a class="float-right"><?= $user->email ?></a>
                             </li>
                         </ul>
 
@@ -58,22 +70,24 @@
                         <strong><i class="fas fa-home mr-1"></i> Departemen</strong>
 
                         <p class="text-muted">
-                            Sales
+                            <?php
+                            if ($user->role == 1) {
+                                echo "Admin";
+                            } elseif ($user->role == 2) {
+                                echo "Sales";
+                            } elseif ($user->role == 3) {
+                                echo "Product Development";
+                            } elseif ($user->role == 4) {
+                                echo "Engneering";
+                            }
+                            ?>
                         </p>
 
                         <hr>
 
                         <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
 
-                        <p class="text-muted">nurdiyana.ade@gmail.com</p>
-
-                        <hr>
-
-                        <strong><i class="fas fa-phone mr-1"></i> Telpon</strong>
-
-                        <p class="text-muted">
-                            0877-7645-1664
-                        </p>
+                        <p class="text-muted"><?= $user->email ?></p>
 
                         <hr>
 

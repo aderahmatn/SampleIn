@@ -3,11 +3,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">List Permintaan</h1>
+                <h1 class="m-0 text-dark">Permintaan Diterima</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">List permintaan</li>
+                    <li class="breadcrumb-item active">Permintaan diterima</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($permintaan as $key) { ?>
+                                <?php foreach ($accepted as $key) { ?>
                                     <tr>
                                         <td><?= $key->noPermintaan ?></td>
                                         <td><?= $key->customer ?></td>
@@ -58,9 +58,10 @@
                                             <?php } ?>
                                         </td>
                                         <td width>
+                                            <!-- <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'user/delete/' . $dt->idUser ?>')">hapus</button> -->
                                             <a href="<?= base_url() . 'permintaan/detail/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Detail</a>
-                                            <a href="<?= base_url() . 'permintaan/edit/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Edit</a>
                                             <?php if ($this->session->userdata('role') == 2) { ?>
+                                                <button class="btn btn-default btn-sm">Edit</button>
                                                 <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'permintaan/delete/' . $key->idPermintaan ?>')">hapus</button>
                                             <?php } ?>
                                         </td>

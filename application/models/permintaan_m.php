@@ -48,6 +48,7 @@ class Permintaan_m extends CI_Model
         }
         return "default.png";
     }
+
     public function create_permintaan()
     {
         $post = $this->input->post();
@@ -63,7 +64,29 @@ class Permintaan_m extends CI_Model
         $this->foto = $this->upload_image();
         $this->db->insert($this->_table, $this);
     }
-    public function get_all($nik)
+    public function get_all()
+    {
+        $this->db->select('*');
+        $this->db->join('customers', 'customers.idCustomer = permintaan.idCustomer', 'left');
+        $this->db->join('users', 'users.nik = permintaan.sales', 'left');
+        $this->db->from($this->_table);
+        $this->db->where('permintaan.deleted', 0);
+        $this->db->where('permintaan.status', 1);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_accepted()
+    {
+        $this->db->select('*');
+        $this->db->join('customers', 'customers.idCustomer = permintaan.idCustomer', 'left');
+        $this->db->join('users', 'users.nik = permintaan.sales', 'left');
+        $this->db->from($this->_table);
+        $this->db->where('permintaan.deleted', 0);
+        $this->db->where('permintaan.status', 2);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_by_nik($nik)
     {
         $this->db->select('*');
         $this->db->join('users', 'users.nik = permintaan.sales', 'left');
@@ -84,6 +107,12 @@ class Permintaan_m extends CI_Model
         $this->db->from('permintaan');
         $query = $this->db->get();
         return $query->row();
+    }
+    public function update_status($id)
+    {
+        $this->db->set('status', 2);
+        $this->db->where('idPermintaan', $id);
+        $this->db->update('permintaan');
     }
     public function Delete($id)
     {

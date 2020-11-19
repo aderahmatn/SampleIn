@@ -14,6 +14,7 @@ class Customer extends CI_Controller
 
     public function index()
     {
+        check_role_sales();
         $data['customer'] = $this->customer_m->GetAll(
             $this->session->userdata('nik')
         );
@@ -22,6 +23,7 @@ class Customer extends CI_Controller
 
     public function tambah()
     {
+        check_role_sales();
         $customer  = $this->customer_m;
         $validation = $this->form_validation;
         $validation->set_rules($customer->rules());
@@ -39,6 +41,7 @@ class Customer extends CI_Controller
     }
     public function delete($id)
     {
+        check_role_sales();
         $this->customer_m->Delete($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Customer berhasil dihapus!');
@@ -47,6 +50,7 @@ class Customer extends CI_Controller
     }
     public function edit($id = null)
     {
+        check_role_sales();
         if (!isset($id)) redirect('customer');
         $customer  = $this->customer_m;
         $validation = $this->form_validation;

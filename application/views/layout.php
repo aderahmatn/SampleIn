@@ -101,18 +101,28 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url('permintaan/create') ?>" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Buat permintaan</p>
-                                    </a>
-                                </li>
+                                <?php if ($this->session->userdata('role') == 2) { ?>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('permintaan/create') ?>" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Buat permintaan</p>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                                 <li class="nav-item">
                                     <a href="<?= base_url('permintaan') ?>" class="nav-link ">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>List permintaan</p>
                                     </a>
                                 </li>
+                                <?php if ($this->session->userdata('role') == 3) { ?>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('permintaan/accepted') ?>" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Permintaan diterima</p>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
@@ -138,30 +148,37 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link <?= $this->uri->segment(1) == 'customer' ? 'active' : '' ?> <?= $this->uri->segment(1) == 'user' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-database"></i>
-                                <p>
-                                    Data Master
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url() . 'customer' ?>" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Master Customer</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('user') ?>" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Master User</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        <?php if ($this->session->userdata('role') == 1 or $this->session->userdata('role') == 2) { ?>
 
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link <?= $this->uri->segment(1) == 'customer' ? 'active' : '' ?> <?= $this->uri->segment(1) == 'user' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-database"></i>
+                                    <p>
+                                        Data Master
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() . 'customer' ?>" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Master Customer</p>
+                                        </a>
+                                    </li>
+                                    <?php if ($this->session->userdata('role') == 1) { ?>
+
+                                        <li class="nav-item">
+                                            <a href="<?= base_url('user') ?>" class="nav-link ">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Master User</p>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+
+                                </ul>
+
+                            </li>
+                        <?php } ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

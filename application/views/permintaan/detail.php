@@ -7,8 +7,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Detail permintaan</li>
                     <li class="breadcrumb-item"><a href="<?= base_url('permintaan') ?>">List permintaan</a></li>
+                    <li class="breadcrumb-item active">Detail permintaan</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,10 +26,14 @@
                     <h4>
                         <strong>Detail Permintaan</strong>
                         <?php if ($this->session->userdata('role') == 2) { ?>
-                            <a href="" class="btn btn-default btn-sm float-right"><i class="fa fa-edit"></i> Edit</a>
+                            <a href="<?= base_url() . 'permintaan/edit/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Edit</a>
                         <?php } ?>
-                        <?php if ($this->session->userdata('role') == 3) { ?>
-                            <a href="" class="btn btn-warning btn-sm float-right"><i class="fa fa-check"></i> Accept</a>
+                        <?php if ($this->session->userdata('role') == 3) {
+                            if ($detail->status == 2) { ?>
+                                <a href="<?= base_url() . 'permintaan/edit/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Edit</a>
+                            <?php } else { ?>
+                                <a href="<?= base_url('permintaan/status/') . $detail->idPermintaan ?>" class="btn btn-warning btn-sm float-right"><i class="fa fa-check"></i>Accept</a>
+                            <?php } ?>
                         <?php } ?>
                     </h4>
                 </div>

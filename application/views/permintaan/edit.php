@@ -3,11 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Buat Permintaan</h1>
+                <h1 class="m-0 text-dark">Edit Permintaan</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Buat Permintaan</li>
+                    <li class="breadcrumb-item "><a href="<?= base_url('permintaan') ?>">List Permintaan</a></li>
+                    <li class="breadcrumb-item active">Edit Permintaan</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,14 +33,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="fno">Nomor Permintaan</label>
-                                        <input type="text" class="form-control <?= form_error('fno') ? 'is-invalid' : '' ?>" id="fno" name="fno" value="<?= sprintf("%03s", $noreq) . "/" . romawi_bulan(date('m')) . "/" . date("Y") . "/" . "MKT" ?>" readonly>
+                                        <input type="text" class="form-control <?= form_error('fno') ? 'is-invalid' : '' ?>" id="fno" name="fno" value="<?= $detail->noPermintaan ?>" readonly>
                                         <div class="invalid-feedback">
                                             <?= form_error('fno') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="ftgl">Tanggal</label>
-                                        <input type="date" class="form-control <?= form_error('ftgl') ? 'is-invalid' : '' ?>" id="ftgl" name="ftgl" placeholder="Nama customer">
+                                        <input type="date" class="form-control <?= form_error('ftgl') ? 'is-invalid' : '' ?>" id="ftgl" name="ftgl" value="<?= $detail->tanggal ?>">
                                         <div class="invalid-feedback">
                                             <?= form_error('ftgl') ?>
                                         </div>
@@ -70,7 +71,7 @@
                                             <?php } ?>
                                         </select>
                                         <div class="invalid-feedback">
-                                            <?php echo form_error('fcustomer'); ?>
+                                            <?= form_error('fcustomer'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -138,7 +139,7 @@
                                                 <option value="6">Compare</option>
                                             </select>
                                             <div class="invalid-feedback">
-                                                <?php echo form_error('fpermintaan[]'); ?>
+                                                <?= form_error('fpermintaan[]'); ?>
                                             </div>
                                         </div>
                                     </div>

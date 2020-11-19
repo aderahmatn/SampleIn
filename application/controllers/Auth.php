@@ -17,6 +17,7 @@ class Auth extends CI_Controller
         if ($query->num_rows() > 0) {
             $row = $query->row();
             $params = array(
+                'id' => $row->idUser,
                 'nik' => $row->nik,
                 'role' => $row->role,
                 'uname' => $row->username,
@@ -43,6 +44,7 @@ class Auth extends CI_Controller
     }
     public function register()
     {
+        check_role_admin();
         $auth  = $this->auth_m;
         $validation = $this->form_validation;
         $validation->set_rules($auth->rules());

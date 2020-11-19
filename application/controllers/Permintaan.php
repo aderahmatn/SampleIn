@@ -16,6 +16,7 @@ class Permintaan extends CI_Controller
 
     public function create()
     {
+        check_role_sales();
         $produk = $this->product_m;
         $validation = $this->form_validation;
         $validation->set_rules($produk->rules());
@@ -52,6 +53,7 @@ class Permintaan extends CI_Controller
     }
     public function delete($id)
     {
+        check_role_sales();
         $this->permintaan_m->Delete($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Permintaan berhasil dihapus!');
@@ -60,11 +62,26 @@ class Permintaan extends CI_Controller
         $this->session->set_flashdata('error', 'Permintaan gagal dihapus!');
         redirect('permintaan', 'refresh');
     }
+    public function status($id)
+    {
+        $this->permintaan_m->update_status($id);
+        if ($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', 'Permintaan diterima!');
+            redirect('permintaan/accepted', 'refresh');
+        }
+        $this->session->set_flashdata('error', 'Permintaan gagal diterima!');
+        redirect('permintaan', 'refresh');
+    }
     public function index()
     {
-
-        $data['permintaan'] = $this->permintaan_m->get_all($this->session->userdata('nik'));
-        $this->template->load('layout', 'permintaan/index', $data);
+        $role = $this->session->userdata('role');
+        if ($role != 2) {
+            $data['permintaan'] = $this->permintaan_m->get_all();
+            $this->template->load('layout', 'permintaan/index', $data);
+        } else {
+            $data['permintaan'] = $this->permintaan_m->get_by_nik($this->session->userdata('nik'));
+            $this->template->load('layout', 'permintaan/index', $data);
+        }
     }
     public function detail($id)
     {
@@ -72,6 +89,16 @@ class Permintaan extends CI_Controller
         $data['detail'] = $this->permintaan_m->get_by_id($id);
         $data['produk'] = $this->product_m->get_by_id($id);
         $this->template->load('layout', 'permintaan/detail', $data);
+    }
+    public function accepted()
+    {
+        $data['accepted'] = $this->permintaan_m->get_accepted();
+        $this->template->load('layout', 'permintaan/diterima', $data);
+    }
+    public function edit($id)
+    {
+        $data['detail'] = $this->permintaan_m->get_by_id($id);
+        $this->template->load('layout', 'permintaan/edit', $data);
     }
 }
 
