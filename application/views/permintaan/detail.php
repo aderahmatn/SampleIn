@@ -78,6 +78,7 @@
 
             <!-- Table row -->
             <div class="row">
+
                 <div class="col-12 table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -98,6 +99,7 @@
                             <?php
                             $no = 1;
                             foreach ($produk as $key) { ?>
+
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= $key->namaProduk ?></td>
@@ -118,22 +120,24 @@
                                         <?php }
                                         echo $key->company ?>
                                     </td>
-                                    <td><a href="#" data-toggle="modal" data-target="#fotoProduk" class="text-primary">Lihat</a></td>
-                                </tr>
-                                <!-- Modal -->
-                                <div class="modal fade" id="fotoProduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <img src="<?= base_url() . 'upload/product/' . $key->foto ?>" alt="..." class="img-thumbnail">
-                                            </div>
-                                            <div class=" modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                    <td><a href="#" data-toggle="modal" data-target="#fotoProduk<?= $key->idProduk ?>" class="text-primary">Lihat</a></td>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="fotoProduk<?= $key->idProduk ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <img src="<?= base_url() . 'upload/product/' . $key->foto ?>" alt="..." class="img-thumbnail">
+                                                </div>
+                                                <div class=" modal-footer">
+                                                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php } ?>
+                                <?php } ?>
+
+                                </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -205,19 +209,7 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="fotoProduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <img src="<?= base_url() . 'upload/product/' . $detail->foto ?>" alt="..." class="img-thumbnail">
-            </div>
-            <div class=" modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- Delete Confirm -->
 <script type="text/javascript">
     function deleteConfirm(url) {

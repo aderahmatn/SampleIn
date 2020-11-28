@@ -86,7 +86,7 @@
                                         <td><?= $key->duedate ?></td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="text" value="<?= $key->idProduk ?>" name="fid[]">
+                                                <input type="hidden" value="<?= $key->idProduk ?>" name="fid[]">
                                                 <input type="text" class="form-control <?= form_error('faplikasi[]') ? 'is-invalid' : '' ?> form-control-sm" id="faplikasi" name="faplikasi[]" placeholder="aplikasi ">
                                                 <div class="invalid-feedback">
                                                     <?= form_error('faplikasi[]') ?>
