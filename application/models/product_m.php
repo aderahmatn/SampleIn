@@ -26,6 +26,21 @@ class Product_m extends CI_Model
             ]
         ];
     }
+    public function rules_update()
+    {
+        return [
+            [
+                'field' => 'faplikasi[]',
+                'label' => 'Aplikasi',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'fcompany[]',
+                'label' => 'Company',
+                'rules' => 'required'
+            ],
+        ];
+    }
     public function save_batch()
     {
         $post = $this->input->post();
@@ -36,27 +51,78 @@ class Product_m extends CI_Model
         $this->brand = $post['fbrand'];
         $this->qty = $post['fqty'];
         $this->duedate = $post['fduedate'];
-        $this->permintaan = $post['fpermintaan'];
         $this->deleted = 0;
         $data = array();
         $index = 0;
-
+        $permintaan = 1;
         foreach ($this->namaProduk as $dataproduk) {
             array_push($data, array(
                 'idproduk' => $this->idProduk . $index,
                 'idPermintaan' => $this->idPermintaan,
+                'permintaan' => implode("/", $post['fpermintaan' . $permintaan]),
                 'namaProduk' => $this->namaProduk[$index],
                 'partNo' => $this->partNo[$index],
                 'brand' => $this->brand[$index],
                 'duedate' => $this->duedate[$index],
                 'deleted' => $this->deleted,
                 'qty' => $this->qty[$index],
-                'permintaan' => $this->permintaan[$index],
             ));
             $index++;
+            $permintaan++;
         }
         return $this->db->insert_batch($this->_table, $data);
     }
+    public function upload_image()
+    {
+        $config['upload_path']          = './upload/product/';
+        $config['allowed_types']        = 'jpg|png|jpeg';
+        $config['file_name']            = $this->idProduk;
+        $config['overwrite']            = true;
+        $config['max_size']             = 2048; // 2MB
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('ffoto')) {
+            return $this->upload->data("file_name");
+        }
+        return "default.png";
+    }
+    function proses_update()
+    {
+        $config['upload_path']          = './upload/product/';
+        $config['allowed_types']        = 'jpg|png|jpeg';
+        $config['file_name']            = $this->idProduk;
+        $config['overwrite']            = true;
+        $config['max_size']             = 2048; // 2MB
+        $config['encrypt_name']         = true;
+        $this->load->library('upload', $config);
+        $id = $this->input->post('fid');
+        $company = $this->input->post('fcompany');
+        $aplikasi = $this->input->post('faplikasi');
+        $image = count($_FILES['fimage']['name']);
+        for ($i = 0; $i < $image; $i++) {
+            if (!empty($_FILES['fimage']['name'][$i])) {
+
+                $_FILES['file']['name'] = $_FILES['fimage']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['fimage']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['fimage']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['fimage']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['fimage']['size'][$i];
+
+                if ($this->upload->do_upload('file')) {
+
+                    $uploadData = $this->upload->data();
+                    $data['foto'] = $uploadData['file_name'];
+                    $data['company'] = $company[$i];
+                    $data['aplikasi'] = $aplikasi[$i];
+                    $this->db->where('idProduk', $id[$i]);
+                    $this->db->update('produk', $data);
+                }
+            }
+        }
+    }
+
     public function get_by_id($id)
     {
         $this->db->select('*');

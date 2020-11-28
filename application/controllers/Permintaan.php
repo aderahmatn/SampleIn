@@ -29,6 +29,7 @@ class Permintaan extends CI_Controller
         } else {
             $post = $this->input->post(null, TRUE);
             $produk->save_batch($post);
+
             if ($this->db->affected_rows() > 0) {
                 $permintaan  = $this->permintaan_m;
                 $validation = $this->form_validation;
@@ -44,7 +45,7 @@ class Permintaan extends CI_Controller
                     $post = $this->input->post(null, TRUE);
                     $permintaan->create_permintaan($post);
                     if ($this->db->affected_rows() > 0) {
-                        $this->session->set_flashdata('success', 'User berhasil didaftarkan!');
+                        $this->session->set_flashdata('success', 'Permintaan berhasil dibuat!');
                         redirect('permintaan', 'refresh');
                     }
                 }
@@ -88,7 +89,50 @@ class Permintaan extends CI_Controller
         $data['qty'] = $this->product_m->count_by_id($id);
         $data['detail'] = $this->permintaan_m->get_by_id($id);
         $data['produk'] = $this->product_m->get_by_id($id);
+        if (!$this->product_m->get_by_id($id)) {
+            $this->session->set_flashdata('error', 'Permintaan tidak ditemukan');
+            redirect('permintaan', 'refresh');
+        }
         $this->template->load('layout', 'permintaan/detail', $data);
+    }
+    public function update($id)
+    {
+        $produk = $this->product_m;
+        $validation = $this->form_validation;
+        $validation->set_rules($produk->rules_update());
+        if ($validation->run() == false) {
+            $data['qty'] = $this->product_m->count_by_id($id);
+            $data['detail'] = $this->permintaan_m->get_by_id($id);
+            $data['produk'] = $this->product_m->get_by_id($id);
+            if (!$this->product_m->get_by_id($id)) {
+                $this->session->set_flashdata('error', 'Permintaan tidak ditemukan');
+                redirect('permintaan', 'refresh');
+            }
+            $this->template->load('layout', 'permintaan/update', $data);
+        } else {
+            $post = $this->input->post(null, TRUE);
+            $produk->proses_update($post);
+            if ($this->db->affected_rows() > 0) {
+                $permintaan  = $this->permintaan_m;
+                $validation = $this->form_validation;
+                $validation->set_rules($permintaan->rules());
+
+                if ($validation->run() == FALSE) {
+                    $data['customer'] = $this->customer_m->GetAll(
+                        $this->session->userdata('nik')
+                    );
+                    $data['noreq'] = $this->permintaan_m->CheckNoPeq();
+                    $this->template->load('layout', 'permintaan/create', $data);
+                } else {
+                    $post = $this->input->post(null, TRUE);
+                    $permintaan->create_permintaan($post);
+                    if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('success', 'User berhasil didaftarkan!');
+                        redirect('permintaan', 'refresh');
+                    }
+                }
+            }
+        }
     }
     public function accepted()
     {

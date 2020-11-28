@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Permintaan <span class="text-muted text-md"><?= $detail->noPermintaan ?></span></h1>
+                <h1 class="m-0 text-dark">Update Permintaan <span class="text-muted text-md"><?= $detail->noPermintaan ?></span></h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="<?= base_url('permintaan') ?>">List permintaan</a></li>
-                    <li class="breadcrumb-item active">Detail permintaan</li>
+                    <li class="breadcrumb-item active">Update permintaan</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -20,25 +20,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="invoice p-3 mb-3">
-            <!-- title row -->
-            <div class="row mb-2">
-                <div class="col-12">
-                    <h4>
-                        <strong>Detail Permintaan</strong>
-                        <?php if ($this->session->userdata('role') == 2) { ?>
-                            <a href="<?= base_url() . 'permintaan/edit/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Edit</a>
-                        <?php } ?>
-                        <?php if ($this->session->userdata('role') == 3) {
-                            if ($detail->status == 2) { ?>
-                                <a href="<?= base_url() . 'permintaan/update/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Update</a>
-                            <?php } else { ?>
-                                <a href="<?= base_url('permintaan/status/') . $detail->idPermintaan ?>" class="btn btn-warning btn-sm float-right"><i class="fa fa-check"></i>Accept</a>
-                            <?php } ?>
-                        <?php } ?>
-                    </h4>
-                </div>
-                <!-- /.col -->
-            </div>
+
             <!-- info row -->
             <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
@@ -46,8 +28,8 @@
                         <strong>Customer :</strong><br>
                         <?= ucwords($detail->customer) ?><br>
                         <?= ucwords($detail->alamat) ?><br>
-                        Phone : <?= ucwords($detail->telpon) ?><br>
-                        Negara : <?= ucwords($detail->negara) ?>
+                        Phone: <?= ucwords($detail->telpon) ?><br>
+                        Negara: <?= ucwords($detail->negara) ?>
                     </address>
                 </div>
                 <!-- /.col -->
@@ -71,109 +53,85 @@
                     <?php if ($detail->status == 4) { ?>
                         <span class="badge badge-success">Finished</span>
                     <?php } ?>
+                    <br>
                 </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->
-
             <!-- Table row -->
             <div class="row">
                 <div class="col-12 table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Nama Produk</th>
                                 <th>Part No</th>
                                 <th>Brand</th>
-                                <th>Qty</th>
-                                <th>Permintaan</th>
-                                <th>Aplikasi</th>
                                 <th>Due Date</th>
+                                <th>Aplikasi</th>
                                 <th>Company</th>
-                                <th>Foto</th>
+                                <th>Foto Produk</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                            $no = 1;
-                            foreach ($produk as $key) { ?>
-                                <tr>
-                                    <td><?= $no++ ?></td>
-                                    <td><?= $key->namaProduk ?></td>
-                                    <td><?= $key->partNo ?></td>
-                                    <td><?= $key->brand ?></td>
-                                    <td><?= $key->qty ?></td>
-                                    <td><?= $key->permintaan ?></td>
-                                    <td>
-                                        <?php if ($key->aplikasi == null) { ?>
-                                            <small class="text-muted">tidak ada</small>
-                                        <?php }
-                                        echo $key->aplikasi ?>
-                                    </td>
-                                    <td><?= $key->duedate ?></td>
-                                    <td>
-                                        <?php if ($key->company == null) { ?>
-                                            <small class="text-muted">tidak ada</small>
-                                        <?php }
-                                        echo $key->company ?>
-                                    </td>
-                                    <td><a href="#" data-toggle="modal" data-target="#fotoProduk" class="text-primary">Lihat</a></td>
-                                </tr>
-                                <!-- Modal -->
-                                <div class="modal fade" id="fotoProduk" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <img src="<?= base_url() . 'upload/product/' . $key->foto ?>" alt="..." class="img-thumbnail">
+                            <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+                                <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
+                                <?php
+                                $no = 1;
+                                foreach ($produk as $key) { ?>
+                                    <tr>
+                                        <td><?= $key->namaProduk ?></td>
+                                        <td><?= $key->partNo ?></td>
+                                        <td><?= $key->brand ?></td>
+                                        <td><?= $key->duedate ?></td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" value="<?= $key->idProduk ?>" name="fid[]">
+                                                <input type="text" class="form-control <?= form_error('faplikasi[]') ? 'is-invalid' : '' ?> form-control-sm" id="faplikasi" name="faplikasi[]" placeholder="aplikasi ">
+                                                <div class="invalid-feedback">
+                                                    <?= form_error('faplikasi[]') ?>
+                                                </div>
                                             </div>
-                                            <div class=" modal-footer">
-                                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select name="fcompany[]" id="fcompany[]" class="form-control custom-form form-control-sm <?= form_error('fcompany[]') ? 'is-invalid' : '' ?>" name="fcompany[]">
+                                                    <option hidden selected value="">Pilih Company</option>
+                                                    <option value="1">SS/SO</option>
+                                                    <option value="2">PJM</option>
+                                                    <option value="3">SS E/T</option>
+                                                    <option value="4">ADR Shanghai</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    <?php echo form_error('fcompany[]'); ?>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="file" class="form-control-file <?= form_error('fimage[]') ? 'is-invalid' : '' ?> form-control-sm" id="fimage[]" name="fimage[]" placeholder="pilih foto">
+                                                <div class="invalid-feedback">
+                                                    <?= form_error('fimage[]') ?>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
                         </tbody>
                     </table>
                 </div>
                 <!-- /.col -->
             </div>
             <!-- /.row -->
-
             <div class="row mb-4">
-                <div class="col-md-4">
-                    <p class="lead text-sm">Permintaan :</p>
-                    <ol class="text-muted well well-sm shadow-none mt-n3 text-sm">
-                        <li>Gambar</li>
-                        <li>MCC</li>
-                        <li>FP3B</li>
-                        <li>Test Lab</li>
-                        <li>Sample</li>
-                        <li>Compare (Specification Test)</li>
-                    </ol>
+                <div class="col-12 ">
+                    <div class="card-footer text-muted">
+                        <button class="btn btn-primary float-right" type="submit">Submit</button>
+                    </div>
                 </div>
-                <!-- /.col -->
-                <div class="col-md-4">
-                    <p class="lead text-sm">Company :</p>
-                    <ol class="text-muted well well-sm shadow-none mt-n3 text-sm">
-                        <li>SS/SO</li>
-                        <li>PJM</li>
-                        <li>SS E/T</li>
-                        <li>ADR Shanghai</li>
-
-                    </ol>
-                </div>
-                <!-- /.col -->
-                <div class="col-md-4">
-                    <p class="lead text-sm">Note :</p>
-                    <p class="text-muted well well-sm shadow-none mt-n3 text-sm">
-                        <?= $detail->note ?>
-                    </p>
-                </div>
-                <!-- /.col -->
-
             </div>
+            </form>
+
             <!-- /.row -->
 
         </div>

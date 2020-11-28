@@ -18,6 +18,11 @@
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/toastr/toastr.min.css' ?>">
     <!-- DataTables -->
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' ?>">
+    <!-- Select 2 -->
+    <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/select2/css/select2.min.css' ?>">
+    <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' ?>">
+
+
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/datatables-buttons/css/buttons.dataTables.min.css' ?>">
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' ?>">
     <!-- Google Font: Source Sans Pro -->
@@ -40,6 +45,8 @@
     <script src="<?= base_url() . 'assets/plugins/datatables-responsive/js/dataTables.responsive.min.js' ?>"></script>
     <script src="<?= base_url() . 'assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' ?>"></script>
     <script src="<?= base_url() . 'assets/plugins/datatables-buttons/js/dataTables.buttons.min.js' ?>"></script>
+    <!-- Select 2 -->
+    <script src="<?= base_url() . 'assets/plugins/select2/js/select2.full.min.js' ?>"></script>
 </head>
 
 <body class="hold-transition sidebar-mini accent-navy layout-fixed">
