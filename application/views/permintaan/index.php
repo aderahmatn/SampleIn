@@ -30,7 +30,6 @@
                                     <th>Customer</th>
                                     <th>Tanggal</th>
                                     <th>Sales</th>
-                                    <th>Foto</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -42,7 +41,6 @@
                                         <td><?= $key->customer ?></td>
                                         <td><?= $key->tanggal ?></td>
                                         <td><?= $key->nama ?></td>
-                                        <td><img src="<?= base_url() . 'upload/product/' . $key->foto ?>" alt="..." class="img-thumbnail" style="height: 100px; width: 100px;"></td>
                                         <td>
                                             <?php if ($key->status == 1) { ?>
                                                 <span class="badge badge-danger">Created</span>

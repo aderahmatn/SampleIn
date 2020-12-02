@@ -23,7 +23,32 @@ class Product_m extends CI_Model
                 'field' => 'fproduct[]',
                 'label' => 'Nama Product',
                 'rules' => 'required'
-            ]
+            ],
+            [
+                'field' => 'fpartno[]',
+                'label' => 'Nomor Part',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'fbrand[]',
+                'label' => 'Brand',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'fqty[]',
+                'label' => 'Brand',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'fpermintaan[]',
+                'label' => 'Permintaan',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'fduedate[]',
+                'label' => 'Duedate',
+                'rules' => 'required'
+            ],
         ];
     }
     public function rules_update()
@@ -66,6 +91,7 @@ class Product_m extends CI_Model
                 'duedate' => $this->duedate[$index],
                 'deleted' => $this->deleted,
                 'qty' => $this->qty[$index],
+                'foto' => 'default.png'
             ));
             $index++;
             $permintaan++;

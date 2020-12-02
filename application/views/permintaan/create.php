@@ -45,13 +45,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="ffoto">Foto Produk</label>
-                                        <input type="file" class="form-control-file <?= form_error('ffoto') ? 'is-invalid' : '' ?>" id="ffoto" name="ffoto" placeholder="pilih foto">
-                                        <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Format file yang didukung hanya JPG, JPEG, PNG. max. size 2Mb
-                                        </small>
+                                        <label for="fnote">Note</label>
+                                        <input type="text" class="form-control <?= form_error('fnote') ? 'is-invalid' : '' ?>" id="fnote" name="fnote" placeholder="Note">
                                         <div class="invalid-feedback">
-                                            <?= form_error('ffoto') ?>
+                                            <?= form_error('fnote') ?>
                                         </div>
                                     </div>
                                 </div>
@@ -71,13 +68,6 @@
                                         </select>
                                         <div class="invalid-feedback">
                                             <?php echo form_error('fcustomer'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fnote">Note</label>
-                                        <input type="text" class="form-control <?= form_error('fnote') ? 'is-invalid' : '' ?>" id="fnote" name="fnote" placeholder="Note">
-                                        <div class="invalid-feedback">
-                                            <?= form_error('fnote') ?>
                                         </div>
                                     </div>
                                 </div>
@@ -104,31 +94,31 @@
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fpartno') ? 'is-invalid' : '' ?>" id="fpartno" name="fpartno[]" placeholder="Part nomor">
+                                            <input type="text" class="form-control <?= form_error('fpartno[]') ? 'is-invalid' : '' ?>" id="fpartno" name="fpartno[]" placeholder="Part nomor">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fpartno') ?>
+                                                <?= form_error('fpartno[]') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fbrand') ? 'is-invalid' : '' ?>" id="fbrand" name="fbrand[]" placeholder="Brand produk">
+                                            <input type="text" class="form-control <?= form_error('fbrand[]') ? 'is-invalid' : '' ?>" id="fbrand" name="fbrand[]" placeholder="Brand produk">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fbrand') ?>
+                                                <?= form_error('fbrand[]') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-1 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fqty') ? 'is-invalid' : '' ?>" id="fqty" name="fqty[]" placeholder="Qty">
+                                            <input type="text" class="form-control <?= form_error('fqty[]') ? 'is-invalid' : '' ?>" id="fqty" name="fqty[]" placeholder="Qty">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fqty') ?>
+                                                <?= form_error('fqty[]') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <select class="select2 select2-hidden-accessible" name="fpermintaan1[]" id="fpermintaan" multiple="" data-placeholder=" Pilih permintaan" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true" autocomplete="off">
+                                            <select class="select2 select2-hidden-accessible <?= form_error('fpermintaan[]') ? 'is-invalid' : '' ?>" name="fpermintaan1[]" id="fpermintaan" multiple="" data-placeholder=" Pilih permintaan" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true" autocomplete="off">
                                                 <option value="1">Gambar</option>
                                                 <option value="2">MCC</option>
                                                 <option value="3">FP3B</option>
@@ -144,9 +134,9 @@
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="date" class="form-control <?= form_error('fduedate') ? 'is-invalid' : '' ?>" id="fduedate" name="fduedate[]" placeholder="Due date">
+                                            <input type="date" class="form-control <?= form_error('fduedate[]') ? 'is-invalid' : '' ?>" id="fduedate" name="fduedate[]" placeholder="Due date">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fduedate') ?>
+                                                <?= form_error('fduedate[]') ?>
                                             </div>
                                         </div>
                                     </div>

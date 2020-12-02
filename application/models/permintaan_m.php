@@ -32,22 +32,22 @@ class Permintaan_m extends CI_Model
         ];
     }
 
-    public function upload_image()
-    {
-        $config['upload_path']          = './upload/product/';
-        $config['allowed_types']        = 'jpg|png|jpeg';
-        $config['file_name']            = $this->idPermintaan;
-        $config['overwrite']            = true;
-        $config['max_size']             = 2048; // 2MB
-        // $config['max_width']            = 1024;
-        // $config['max_height']           = 768;
+    // public function upload_image()
+    // {
+    //     $config['upload_path']          = './upload/product/';
+    //     $config['allowed_types']        = 'jpg|png|jpeg';
+    //     $config['file_name']            = $this->idPermintaan;
+    //     $config['overwrite']            = true;
+    //     $config['max_size']             = 2048; // 2MB
+    //     // $config['max_width']            = 1024;
+    //     // $config['max_height']           = 768;
 
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload("ffoto")) {
-            return $this->upload->data("file_name");
-        }
-        return "default.png";
-    }
+    //     $this->load->library('upload', $config);
+    //     if ($this->upload->do_upload("ffoto")) {
+    //         return $this->upload->data("file_name");
+    //     }
+    //     return "default.png";
+    // }
 
     public function create_permintaan()
     {
@@ -61,7 +61,6 @@ class Permintaan_m extends CI_Model
         $this->status = 1;
         $this->sales = $post['fnik'];
         $this->noUrut = $this->CheckNoPeq();
-        $this->foto = $this->upload_image();
         $this->db->insert($this->_table, $this);
     }
     public function get_all()
