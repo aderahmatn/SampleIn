@@ -40,11 +40,6 @@ class Product_m extends CI_Model
                 'rules' => 'required'
             ],
             [
-                'field' => 'fpermintaan[]',
-                'label' => 'Permintaan',
-                'rules' => 'required'
-            ],
-            [
                 'field' => 'fduedate[]',
                 'label' => 'Duedate',
                 'rules' => 'required'
@@ -64,6 +59,11 @@ class Product_m extends CI_Model
                 'label' => 'Company',
                 'rules' => 'required'
             ],
+            // [
+            //     'field' => 'fimage[]',
+            //     'label' => 'Image',
+            //     'rules' => 'required'
+            // ],
         ];
     }
     public function save_batch()
@@ -164,6 +164,33 @@ class Product_m extends CI_Model
         $hasil = $query->row();
 
         return $hasil;
+    }
+    public function get_by_company($role)
+    {
+        $this->db->select('*');
+        $this->db->where('company', $role);
+        $this->db->where('produk.deleted', 0);
+        $this->db->join('permintaan', 'permintaan.idPermintaan = produk.idPermintaan', 'left');
+        $this->db->from('produk');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function update_status($id)
+    {
+        $this->db->set('statusEng', 1);
+        $this->db->where('idProduk', $id);
+        $this->db->update('produk');
+    }
+    public function get_by_id_produk($id)
+    {
+        $this->db->select('*');
+        $this->db->where('idProduk', $id);
+        $this->db->join('permintaan', 'permintaan.idPermintaan = produk.idPermintaan', 'left');
+        $this->db->join('customers', 'customers.idCustomer = permintaan.idCustomer', 'left');
+        $this->db->join('users', 'users.nik = permintaan.sales', 'left');
+        $this->db->from('produk');
+        $query = $this->db->get();
+        return $query->row();
     }
 }
 

@@ -11,6 +11,7 @@ class Permintaan extends CI_Controller
         $this->load->model('customer_m');
         $this->load->model('permintaan_m');
         $this->load->model('product_m');
+        $this->load->helper('company_helper');
     }
 
 
@@ -121,15 +122,9 @@ class Permintaan extends CI_Controller
                     $data['customer'] = $this->customer_m->GetAll(
                         $this->session->userdata('nik')
                     );
-                    $data['noreq'] = $this->permintaan_m->CheckNoPeq();
-                    $this->template->load('layout', 'permintaan/create', $data);
-                } else {
-                    $post = $this->input->post(null, TRUE);
-                    $permintaan->create_permintaan($post);
-                    if ($this->db->affected_rows() > 0) {
-                        $this->session->set_flashdata('success', 'User berhasil didaftarkan!');
-                        redirect('permintaan', 'refresh');
-                    }
+                    $data['accepted'] = $this->permintaan_m->get_accepted();
+                    $this->session->set_flashdata('success', 'Permintaan berhasil diupdate!');
+                    $this->template->load('layout', 'permintaan/diterima', $data);
                 }
             }
         }
@@ -137,6 +132,11 @@ class Permintaan extends CI_Controller
     public function accepted()
     {
         $data['accepted'] = $this->permintaan_m->get_accepted();
+        $this->template->load('layout', 'permintaan/diterima', $data);
+    }
+    public function onprogress()
+    {
+        $data['onprogress'] = $this->permintaan_m->get_accepted();
         $this->template->load('layout', 'permintaan/diterima', $data);
     }
     public function edit($id)

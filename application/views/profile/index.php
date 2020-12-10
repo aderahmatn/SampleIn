@@ -39,7 +39,13 @@
                             } elseif ($user->role == 3) {
                                 echo "Product Development";
                             } elseif ($user->role == 4) {
-                                echo "Engneering";
+                                echo "Engneering SS/SO";
+                            } elseif ($user->role == 5) {
+                                echo "Engneering PJM";
+                            } elseif ($user->role == 6) {
+                                echo "Engneering SS";
+                            } elseif ($user->role == 7) {
+                                echo "Engneering ADR Shanghai";
                             }
                             ?>
                         </p>
@@ -78,7 +84,13 @@
                             } elseif ($user->role == 3) {
                                 echo "Product Development";
                             } elseif ($user->role == 4) {
-                                echo "Engneering";
+                                echo "Engneering SS/SO";
+                            } elseif ($user->role == 5) {
+                                echo "Engneering PJM";
+                            } elseif ($user->role == 6) {
+                                echo "Engneering SS";
+                            } elseif ($user->role == 7) {
+                                echo "Engneering ADR Shanghai";
                             }
                             ?>
                         </p>

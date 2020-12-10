@@ -97,10 +97,10 @@
                                             <div class="form-group">
                                                 <select name="fcompany[]" id="fcompany[]" class="form-control custom-form form-control-sm <?= form_error('fcompany[]') ? 'is-invalid' : '' ?>" name="fcompany[]">
                                                     <option hidden selected value="">Pilih Company</option>
-                                                    <option value="1">SS/SO</option>
-                                                    <option value="2">PJM</option>
-                                                    <option value="3">SS E/T</option>
-                                                    <option value="4">ADR Shanghai</option>
+                                                    <option value="4">SS/SO</option>
+                                                    <option value="5">PJM</option>
+                                                    <option value="6">SS E/T</option>
+                                                    <option value="7">ADR Shanghai</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     <?php echo form_error('fcompany[]'); ?>

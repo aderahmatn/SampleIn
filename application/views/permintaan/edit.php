@@ -7,7 +7,6 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item "><a href="<?= base_url('permintaan') ?>">List Permintaan</a></li>
                     <li class="breadcrumb-item active">Edit Permintaan</li>
                 </ol>
             </div><!-- /.col -->
@@ -33,26 +32,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="fno">Nomor Permintaan</label>
-                                        <input type="text" class="form-control <?= form_error('fno') ? 'is-invalid' : '' ?>" id="fno" name="fno" value="<?= $detail->noPermintaan ?>" readonly>
+                                        <input type="text" class="form-control <?= form_error('fno') ? 'is-invalid' : '' ?>" id="fno" name="fno" readonly>
                                         <div class="invalid-feedback">
                                             <?= form_error('fno') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="ftgl">Tanggal</label>
-                                        <input type="date" class="form-control <?= form_error('ftgl') ? 'is-invalid' : '' ?>" id="ftgl" name="ftgl" value="<?= $detail->tanggal ?>">
+                                        <input type="date" class="form-control <?= form_error('ftgl') ? 'is-invalid' : '' ?>" id="ftgl" name="ftgl" placeholder="Nama customer">
                                         <div class="invalid-feedback">
                                             <?= form_error('ftgl') ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="ffoto">Foto Produk</label>
-                                        <input type="file" class="form-control-file <?= form_error('ffoto') ? 'is-invalid' : '' ?>" id="ffoto" name="ffoto" placeholder="pilih foto">
-                                        <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Format file yang didukung hanya JPG, JPEG, PNG. max. size 2Mb
-                                        </small>
+                                        <label for="fnote">Note</label>
+                                        <input type="text" class="form-control <?= form_error('fnote') ? 'is-invalid' : '' ?>" id="fnote" name="fnote" placeholder="Note">
                                         <div class="invalid-feedback">
-                                            <?= form_error('ffoto') ?>
+                                            <?= form_error('fnote') ?>
                                         </div>
                                     </div>
                                 </div>
@@ -71,14 +67,7 @@
                                             <?php } ?>
                                         </select>
                                         <div class="invalid-feedback">
-                                            <?= form_error('fcustomer'); ?>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="fnote">Note</label>
-                                        <input type="text" class="form-control <?= form_error('fnote') ? 'is-invalid' : '' ?>" id="fnote" name="fnote" placeholder="Note">
-                                        <div class="invalid-feedback">
-                                            <?= form_error('fnote') ?>
+                                            <?php echo form_error('fcustomer'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -105,32 +94,31 @@
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fpartno') ? 'is-invalid' : '' ?>" id="fpartno" name="fpartno[]" placeholder="Part nomor">
+                                            <input type="text" class="form-control <?= form_error('fpartno[]') ? 'is-invalid' : '' ?>" id="fpartno" name="fpartno[]" placeholder="Part nomor">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fpartno') ?>
+                                                <?= form_error('fpartno[]') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fbrand') ? 'is-invalid' : '' ?>" id="fbrand" name="fbrand[]" placeholder="Brand produk">
+                                            <input type="text" class="form-control <?= form_error('fbrand[]') ? 'is-invalid' : '' ?>" id="fbrand" name="fbrand[]" placeholder="Brand produk">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fbrand') ?>
+                                                <?= form_error('fbrand[]') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-1 mb-2">
                                         <div class="form-group">
-                                            <input type="text" class="form-control <?= form_error('fqty') ? 'is-invalid' : '' ?>" id="fqty" name="fqty[]" placeholder="Qty">
+                                            <input type="text" class="form-control <?= form_error('fqty[]') ? 'is-invalid' : '' ?>" id="fqty" name="fqty[]" placeholder="Qty">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fqty') ?>
+                                                <?= form_error('fqty[]') ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <select name="fpermintaan[]" id="fpermintaan[]" class="form-control custom-form <?= form_error('fpermintaan[]') ? 'is-invalid' : '' ?>" name="fpermintaan[]">
-                                                <option selected hidden value="">Pilih</option>
+                                            <select class="select2 select2-hidden-accessible <?= form_error('fpermintaan[]') ? 'is-invalid' : '' ?>" name="fpermintaan1[]" id="fpermintaan" multiple="" data-placeholder=" Pilih permintaan" style="width: 100%;" data-select2-id="7" tabindex="-1" aria-hidden="true" autocomplete="off">
                                                 <option value="1">Gambar</option>
                                                 <option value="2">MCC</option>
                                                 <option value="3">FP3B</option>
@@ -138,16 +126,17 @@
                                                 <option value="5">Sample</option>
                                                 <option value="6">Compare</option>
                                             </select>
+
                                             <div class="invalid-feedback">
-                                                <?= form_error('fpermintaan[]'); ?>
+                                                <?php echo form_error('fpermintaan[]'); ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2 mb-2">
                                         <div class="form-group">
-                                            <input type="date" class="form-control <?= form_error('fduedate') ? 'is-invalid' : '' ?>" id="fduedate" name="fduedate[]" placeholder="Due date">
+                                            <input type="date" class="form-control <?= form_error('fduedate[]') ? 'is-invalid' : '' ?>" id="fduedate" name="fduedate[]" placeholder="Due date">
                                             <div class="invalid-feedback">
-                                                <?= form_error('fduedate') ?>
+                                                <?= form_error('fduedate[]') ?>
                                             </div>
                                         </div>
                                     </div>
@@ -167,6 +156,12 @@
     <!-- /.content -->
 </div>
 <script>
+    // select 2
+    $(document).ready(function() {
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
+    });
     //define template
     var template = $('#products .product:first').clone();
 
@@ -179,22 +174,30 @@
         //increment
         sectionsCount++;
 
+
         //loop through each input
         var section = template.clone().find(':input').each(function() {
 
                 //set id to store the updated section number
                 var newId = this.id + sectionsCount;
 
+
                 //update for label
                 $(this).prev().attr('for', newId);
 
+
                 //update id
                 this.id = newId;
+                if (this.id == 'fpermintaan' + sectionsCount) {
+                    this.name = "fpermintaan" + sectionsCount + "[]"
+                }
 
             }).end()
-
             //inject new section
             .appendTo('#products');
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        });
         return false;
     });
     //remove section

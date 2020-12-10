@@ -3,11 +3,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Permintaan Diterima</h1>
+                <h1 class="m-0 text-dark">List Sample</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Permintaan diterima</li>
+                    <li class="breadcrumb-item active">List Sample</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,62 +27,67 @@
                             <thead>
                                 <tr>
                                     <th>No. Permintaan</th>
-                                    <th>Customer</th>
-                                    <th>Tanggal</th>
-                                    <th>Sales</th>
-                                    <th>Status</th>
+                                    <th>No Part</th>
+                                    <th>Nama Produk</th>
+                                    <th>Aplikasi</th>
+                                    <th>Permintaan</th>
+                                    <th>Qty</th>
+                                    <th>Due Date</th>
+                                    <th>Foto</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($accepted as $key) { ?>
+                                <?php foreach ($produk as $key) { ?>
                                     <tr>
                                         <td><?= $key->noPermintaan ?></td>
-                                        <td><?= $key->customer ?></td>
-                                        <td><?= $key->tanggal ?></td>
-                                        <td><?= $key->nama ?></td>
-                                        <td>
-                                            <?php if ($key->status == 1) { ?>
-                                                <span class="badge badge-danger">Created</span>
-                                            <?php } ?>
-                                            <?php if ($key->status == 2) { ?>
-                                                <span class="badge badge-warning">Accepted</span>
-                                            <?php } ?>
-                                            <?php if ($key->status == 3) { ?>
-                                                <span class="badge badge-primary">On Progress</span>
-                                            <?php } ?>
-                                            <?php if ($key->status == 4) { ?>
-                                                <span class="badge badge-success">Finished</span>
-                                            <?php } ?>
+                                        <td><?= $key->partNo ?></td>
+                                        <td><?= $key->namaProduk ?></td>
+                                        <td><?= $key->aplikasi ?></td>
+                                        <td><?= $key->permintaan ?></td>
+                                        <td><?= $key->qty ?></td>
+                                        <td><?= $key->duedate ?></td>
+                                        <td><a href="#" data-toggle="modal" data-target="#fotoProduk<?= $key->idProduk ?>" class="text-primary">Lihat</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="fotoProduk<?= $key->idProduk ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body text-center">
+                                                            <img src="<?= base_url() . 'upload/product/' . $key->foto ?>" alt="..." class="img-thumbnail">
+                                                        </div>
+                                                        <div class=" modal-footer">
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>
-                                            <!-- <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'user/delete/' . $dt->idUser ?>')">hapus</button> -->
-                                            <a href="<?= base_url() . 'permintaan/detail/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Detail</a>
-                                            <a href="<?= base_url() . 'permintaan/update/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Update</a>
-                                            <?php if ($this->session->userdata('role') == 2) { ?>
-                                                <button class="btn btn-default btn-sm">Edit</button>
-                                                <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'permintaan/delete/' . $key->idPermintaan ?>')">hapus</button>
+                                            <?php if ($key->statusEng != 1) { ?>
+                                                <a href="<?= base_url() . 'produk/status/' . $key->idProduk ?>" class="btn btn-primary btn-sm">On Progress</a>
+                                            <?php } ?>
+                                            <?php if ($key->statusEng == 1) { ?>
+                                                <a href="<?= base_url('produk/submit_result/') . $key->idProduk ?>" class="btn btn-default btn-sm"> Submit Hasil</a>
                                             <?php } ?>
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <div class="alert alert-light" role="alert">
-                                    <strong class="text-muted text-sm">Keterangan :</strong>
-                                    <ul>
-                                        <li class="text-muted text-sm"><span class="badge badge-danger">Created</span> Permintaan sudah dibuat dan dikirim kepada product development.</li>
-
-                                        <li class="text-muted text-sm"><span class="badge badge-warning">Accepted</span> Permintaan sudah diterima product development.</li>
-                                        <li class="text-muted text-sm"><span class="badge badge-primary">On Progress</span> Permintaan sudah diterima engineering terkait dan sedang proses pengerjaan.</li>
-                                        <li class="text-muted text-sm"><span class="badge badge-success">Finished</span> Permintaan sudah selesai.</li>
-                                    </ul>
-                                </div>
+                        <div class="row mt-4">
+                            <div class="col-md-4">
+                                <p class="lead text-sm">Permintaan :</p>
+                                <ol class="text-muted well well-sm shadow-none mt-n3 text-sm">
+                                    <li>Gambar</li>
+                                    <li>MCC</li>
+                                    <li>FP3B</li>
+                                    <li>Test Lab</li>
+                                    <li>Sample</li>
+                                    <li>Compare (Specification Test)</li>
+                                </ol>
                             </div>
+                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -91,6 +96,7 @@
             <!-- /.col -->
         </div>
         <!-- /.row -->
+
     </div>
     <!-- /.content -->
 </div>
@@ -157,7 +163,6 @@
                 "autoWidth": true,
                 "info": false,
                 "lengthChange": false,
-                "scrollY": 400,
                 "paging": false,
             });
         });

@@ -99,39 +99,51 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-file-signature"></i>
-                                <p>
-                                    Permintaan
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <?php if ($this->session->userdata('role') == 2) { ?>
+                        <?php if ($this->session->userdata('role') > 3) { ?>
+                            <li class="nav-item">
+                                <a href="<?= base_url('produk') ?>" class="nav-link <?= $this->uri->segment(1) == 'produk' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>
+                                        List Sample
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
+                        <?php if ($this->session->userdata('role') < 3) { ?>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-file-signature"></i>
+                                    <p>
+                                        Permintaan
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <?php if ($this->session->userdata('role') == 2) { ?>
+                                        <li class="nav-item">
+                                            <a href="<?= base_url('permintaan/create') ?>" class="nav-link ">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Buat permintaan</p>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
                                     <li class="nav-item">
-                                        <a href="<?= base_url('permintaan/create') ?>" class="nav-link ">
+                                        <a href="<?= base_url('permintaan') ?>" class="nav-link ">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Buat permintaan</p>
+                                            <p>List permintaan</p>
                                         </a>
                                     </li>
-                                <?php } ?>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('permintaan') ?>" class="nav-link ">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>List permintaan</p>
-                                    </a>
-                                </li>
-                                <?php if ($this->session->userdata('role') == 3) { ?>
-                                    <li class="nav-item">
-                                        <a href="<?= base_url('permintaan/accepted') ?>" class="nav-link ">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Permintaan diterima</p>
-                                        </a>
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </li>
+                                    <?php if ($this->session->userdata('role') == 3) { ?>
+                                        <li class="nav-item">
+                                            <a href="<?= base_url('permintaan/accepted') ?>" class="nav-link ">
+                                                <i class="far fa-circle nav-icon"></i>
+                                                <p>Permintaan diterima</p>
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            </li>
+                        <?php } ?>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-file-alt"></i>

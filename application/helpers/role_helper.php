@@ -14,7 +14,16 @@ function role($role)
             return "product-dev";
             break;
         case 4:
-            return "engineering";
+            return "eng - SS/SO";
+            break;
+        case 5:
+            return "eng - PJM";
+            break;
+        case 6:
+            return "eng - SS/ET";
+            break;
+        case 7:
+            return "eng - ADR Shanghai";
             break;
     }
 }

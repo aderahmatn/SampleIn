@@ -121,7 +121,10 @@
                                 <option selected hidden value="">-- Pilih role --</option>
                                 <option value="2" <?= set_value('frole') == "2" ? "selected" : '' ?>>Sales</option>
                                 <option value="3" <?= set_value('frole') == "3" ? "selected" : '' ?>>Produk Dev</option>
-                                <option value="4" <?= set_value('frole') == "4" ? "selected" : '' ?>>Engineering</option>
+                                <option value="4" <?= set_value('frole') == "4" ? "selected" : '' ?>>Engineering - SS/SO</option>
+                                <option value="5" <?= set_value('frole') == "5" ? "selected" : '' ?>>Engineering - PJM</option>
+                                <option value="6" <?= set_value('frole') == "6" ? "selected" : '' ?>>Engineering - SS/ET</option>
+                                <option value="7" <?= set_value('frole') == "7" ? "selected" : '' ?>>Engineering - ADR Shanghai</option>
                                 <option value="1" <?= set_value('frole') == "1" ? "selected" : '' ?>>Administrator</option>
                             </select>
                             <div class="input-group-append">

@@ -55,10 +55,13 @@
                                                 <span class="badge badge-success">Finished</span>
                                             <?php } ?>
                                         </td>
-                                        <td width>
+                                        <td>
                                             <a href="<?= base_url() . 'permintaan/detail/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Detail</a>
-                                            <a href="<?= base_url() . 'permintaan/edit/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Edit</a>
+                                            <?php if ($this->session->userdata('role') == 3) { ?>
+                                                <a href="<?= base_url('permintaan/status/') . $key->idPermintaan ?>" class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Accept</a>
+                                            <?php } ?>
                                             <?php if ($this->session->userdata('role') == 2) { ?>
+                                                <a href="<?= base_url() . 'permintaan/edit/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Edit</a>
                                                 <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'permintaan/delete/' . $key->idPermintaan ?>')">hapus</button>
                                             <?php } ?>
                                         </td>

@@ -118,7 +118,7 @@
                                         <?php if ($key->company == null) { ?>
                                             <small class="text-muted">tidak ada</small>
                                         <?php }
-                                        echo $key->company ?>
+                                        echo company($key->company) ?>
                                     </td>
                                     <td><a href="#" data-toggle="modal" data-target="#fotoProduk<?= $key->idProduk ?>" class="text-primary">Lihat</a></td>
                                     <!-- Modal -->
