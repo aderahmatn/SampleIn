@@ -44,7 +44,32 @@
                                         <td><?= $key->partNo ?></td>
                                         <td><?= $key->namaProduk ?></td>
                                         <td><?= $key->aplikasi ?></td>
-                                        <td><?= $key->permintaan ?></td>
+                                        <td><?php
+                                            $data = $key->permintaan;
+                                            $req = explode("/", $data);
+                                            for ($i = 0; $i < count($req); $i++) {
+                                                switch ($req[$i]) {
+                                                    case 1:
+                                                        echo '<span class="badge badge-secondary mr-1">Gambar</span>';
+                                                        break;
+                                                    case 2:
+                                                        echo '<span class="badge badge-secondary mr-1">MCC</span>';
+                                                        break;
+                                                    case 3:
+                                                        echo '<span class="badge badge-secondary mr-1">FP3B</span>';
+                                                        break;
+                                                    case 4:
+                                                        echo '<span class="badge badge-secondary mr-1">Test Lab</span>';
+                                                        break;
+                                                    case 5:
+                                                        echo '<span class="badge badge-secondary mr-1">Sample</span>';
+                                                        break;
+                                                    case 6:
+                                                        echo '<span class="badge badge-secondary mr-1">Compare</span>';
+                                                        break;
+                                                }
+                                            }
+                                            ?></td>
                                         <td><?= $key->qty ?></td>
                                         <td><?= $key->duedate ?></td>
                                         <td><a href="#" data-toggle="modal" data-target="#fotoProduk<?= $key->idProduk ?>" class="text-primary">Lihat</a>
@@ -74,20 +99,6 @@
                                 <?php } ?>
                             </tbody>
                         </table>
-                        <div class="row mt-4">
-                            <div class="col-md-4">
-                                <p class="lead text-sm">Permintaan :</p>
-                                <ol class="text-muted well well-sm shadow-none mt-n3 text-sm">
-                                    <li>Gambar</li>
-                                    <li>MCC</li>
-                                    <li>FP3B</li>
-                                    <li>Test Lab</li>
-                                    <li>Sample</li>
-                                    <li>Compare (Specification Test)</li>
-                                </ol>
-                            </div>
-                            <!-- /.col -->
-                        </div>
                     </div>
                     <!-- /.card-body -->
                 </div>

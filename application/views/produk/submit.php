@@ -57,7 +57,32 @@
                                 <strong>Sales : </strong>
                                 <?= $produk->nama ?> <br>
                                 <strong>Permintaan :</strong>
-                                <?= $produk->permintaan ?> <br>
+                                <?php
+                                $data = $produk->permintaan;
+                                $req = explode("/", $data);
+                                for ($i = 0; $i < count($req); $i++) {
+                                    switch ($req[$i]) {
+                                        case 1:
+                                            echo '<span class="badge badge-secondary mr-1">Gambar</span>';
+                                            break;
+                                        case 2:
+                                            echo '<span class="badge badge-secondary mr-1">MCC</span>';
+                                            break;
+                                        case 3:
+                                            echo '<span class="badge badge-secondary mr-1">FP3B</span>';
+                                            break;
+                                        case 4:
+                                            echo '<span class="badge badge-secondary mr-1">Test Lab</span>';
+                                            break;
+                                        case 5:
+                                            echo '<span class="badge badge-secondary mr-1">Sample</span>';
+                                            break;
+                                        case 6:
+                                            echo '<span class="badge badge-secondary mr-1">Compare</span>';
+                                            break;
+                                    }
+                                }
+                                ?> <br>
                                 <strong>Due Date :</strong>
                                 <?= date_indo($produk->duedate) ?>
                             </div>
@@ -74,23 +99,23 @@
                         </div>
                         <!-- /.row -->
                         <hr>
-
-                        <!-- form file hasil -->
-                        <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
+                        <form method="POST" action="<?= base_url('produk/process_file') ?>" autocomplete="off" enctype="multipart/form-data">
                             <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
-                            <input type="hidden" name="fidproduk" value="<?= $produk->idProduk ?>" style="display: none">
+                            <input type="text" name="fidproduk" value="<?= $produk->idProduk ?>" style="display: none">
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">
-                                        <label for="file">File Hasil</label>
-                                        <input type="file" class="form-control-file <?= form_error('fimage[]') ? 'is-invalid' : '' ?> form-control-sm" id="fimage[]" name="fimage[]" placeholder="pilih foto">
+                                        <label for="ffile">File Hasil Permintaan</label>
+                                        <input type="file" class="form-control-file <?= form_error('ffile') ? 'is-invalid' : '' ?> form-control-sm" id="ffile" name="ffile" required>
                                         <div class="invalid-feedback">
-                                            <?= form_error('fimage[]') ?>
+                                            <?= form_error('ffile') ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="float-right"><button class="btn btn-primary">Submit</button></div>
+                            <div class="float-right">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </div>
                         </form>
                         <!-- end form file hasil -->
 

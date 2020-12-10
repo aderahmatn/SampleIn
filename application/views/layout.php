@@ -8,6 +8,7 @@
 
     <title>SampleIn | <?= ucwords($this->uri->segment(1)); ?></title>
 
+    <link rel="shortcut icon" href="<?= base_url() . 'assets/dist/img/logo.png' ?>">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugins/fontawesome-free/css/all.min.css' ?>">
     <!-- Theme style -->
@@ -109,7 +110,7 @@
                                 </a>
                             </li>
                         <?php } ?>
-                        <?php if ($this->session->userdata('role') < 3) { ?>
+                        <?php if ($this->session->userdata('role') <= 3) { ?>
                             <li class="nav-item has-treeview">
                                 <a href="#" class="nav-link <?= $this->uri->segment(1) == 'permintaan' ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-file-signature"></i>

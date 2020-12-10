@@ -66,6 +66,7 @@ class Product_m extends CI_Model
             // ],
         ];
     }
+
     public function save_batch()
     {
         $post = $this->input->post();
@@ -191,6 +192,23 @@ class Product_m extends CI_Model
         $this->db->from('produk');
         $query = $this->db->get();
         return $query->row();
+    }
+
+    public function save_file($post)
+    {
+        $config['upload_path']          = './upload/result';
+        $config['allowed_types']        = 'pdf|jpeg|png|jpg';
+        $config['max_size']             = 5000;
+        $config['encrypt_name']            = TRUE;
+        $this->load->library('upload', $config);
+        $id = $this->input->post('fidproduk');
+        if (!$this->upload->do_upload('ffile')) {
+            echo $this->upload->display_errors();
+        } else {
+            $data['result'] = $this->upload->data("file_name");
+            $this->db->where('idProduk', $id);
+            $this->db->update('produk', $data);
+        }
     }
 }
 

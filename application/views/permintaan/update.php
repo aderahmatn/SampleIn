@@ -109,7 +109,7 @@
                                         </td>
                                         <td>
                                             <div class="form-group">
-                                                <input type="file" class="form-control-file <?= form_error('fimage[]') ? 'is-invalid' : '' ?> form-control-sm" id="fimage[]" name="fimage[]" placeholder="pilih foto">
+                                                <input type="file" class="form-control-file <?= form_error('fimage[]') ? 'is-invalid' : '' ?> form-control-sm" id="fimage[]" name="fimage[]" placeholder="pilih foto" required>
                                                 <div class="invalid-feedback">
                                                     <?= form_error('fimage[]') ?>
                                                 </div>
