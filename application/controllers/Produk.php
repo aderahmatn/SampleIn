@@ -9,12 +9,25 @@ class Produk extends CI_Controller
         check_not_login();
         $this->load->model('product_m');
         $this->load->helper('permintaan_helper');
+        $this->load->model('permintaan_m');
     }
     public function index()
     {
         $role = $this->session->userdata('role');
         $data['produk'] = $this->product_m->get_by_company($role);
         $this->template->load('layout', 'produk/index', $data);
+    }
+    public function onprogress()
+    {
+        $role = $this->session->userdata('role');
+        $data['produk'] = $this->product_m->get_on_progress($role);
+        $this->template->load('layout', 'produk/onprogress', $data);
+    }
+    public function finished()
+    {
+        $role = $this->session->userdata('role');
+        $data['produk'] = $this->product_m->get_finished($role);
+        $this->template->load('layout', 'produk/finished', $data);
     }
     public function submit_result($id)
     {
@@ -25,21 +38,24 @@ class Produk extends CI_Controller
     {
         $produkmod = $this->product_m;
         $post = $this->input->post(null, TRUE);
+        $this->permintaan_m->update_status_finished($this->input->post('fidpermintaan'));
         $produkmod->save_file($post);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'File berhasil disimpan!');
-            redirect('produk', 'refresh');
+            redirect('produk/onprogress', 'refresh');
         }
     }
-    public function status($id)
+    public function status($pro, $per)
     {
-        $this->product_m->update_status($id);
+        $this->permintaan_m->update_status_progress($per);
+        $this->product_m->update_status($pro);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Sample on progress');
             redirect('produk', 'refresh');
+        } else {
+            $this->session->set_flashdata('error', 'Sample gagal diterima!');
+            redirect('produk', 'refresh');
         }
-        $this->session->set_flashdata('error', 'Sample gagal diupdate!');
-        redirect('produk', 'refresh');
     }
 }
 

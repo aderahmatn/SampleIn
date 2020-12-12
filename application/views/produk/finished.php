@@ -3,11 +3,11 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">List Sample</h1>
+                <h1 class="m-0 text-dark">Sample Finished</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">List Sample</li>
+                    <li class="breadcrumb-item active">Sample Finished</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -33,7 +33,7 @@
                                     <th>Qty</th>
                                     <th>Due Date</th>
                                     <th>Foto</th>
-                                    <th>Action</th>
+                                    <th>Hasil</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,14 +85,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
-                                            <?php if ($key->statusEng != 1) { ?>
-                                                <a href="<?= base_url() . 'produk/status/' . $key->idProduk . '/' . $key->idPermintaan ?>" class="btn btn-primary btn-sm">On Progress</a>
-                                            <?php } ?>
-                                            <?php if ($key->statusEng == 1) { ?>
-                                                <a href="<?= base_url('produk/submit_result/') . $key->idProduk ?>" class="btn btn-default btn-sm"> Submit Hasil</a>
-                                            <?php } ?>
-                                        </td>
+                                        <td><a href="<?= base_url() . 'upload/result/' . $key->result ?>" class="text-primary" target="_blank">Lihat</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

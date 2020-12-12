@@ -163,7 +163,6 @@ class Product_m extends CI_Model
     {
         $query = $this->db->query("SELECT COUNT(*) as qty  FROM produk WHERE idPermintaan = '$id'");
         $hasil = $query->row();
-
         return $hasil;
     }
     public function get_by_company($role)
@@ -171,6 +170,31 @@ class Product_m extends CI_Model
         $this->db->select('*');
         $this->db->where('company', $role);
         $this->db->where('produk.deleted', 0);
+        $this->db->where('statuseng', null);
+        $this->db->join('permintaan', 'permintaan.idPermintaan = produk.idPermintaan', 'left');
+        $this->db->from('produk');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_on_progress($role)
+    {
+        $this->db->select('*');
+        $this->db->where('company', $role);
+        $this->db->where('produk.deleted', 0);
+        $this->db->where('statuseng', 1);
+        $this->db->where('result', null);
+        $this->db->join('permintaan', 'permintaan.idPermintaan = produk.idPermintaan', 'left');
+        $this->db->from('produk');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_finished($role)
+    {
+        $this->db->select('*');
+        $this->db->where('company', $role);
+        $this->db->where('produk.deleted', 0);
+        $this->db->where('statuseng', 1);
+        $this->db->where('result !=', NULL);
         $this->db->join('permintaan', 'permintaan.idPermintaan = produk.idPermintaan', 'left');
         $this->db->from('produk');
         $query = $this->db->get();
@@ -193,7 +217,6 @@ class Product_m extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
-
     public function save_file($post)
     {
         $config['upload_path']          = './upload/result';

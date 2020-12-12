@@ -113,6 +113,18 @@ class Permintaan_m extends CI_Model
         $this->db->where('idPermintaan', $id);
         $this->db->update('permintaan');
     }
+    public function update_status_progress($id)
+    {
+        $this->db->set('status', 3);
+        $this->db->where('idPermintaan', $id);
+        $this->db->update('permintaan');
+    }
+    public function update_status_finished($id)
+    {
+        $this->db->set('status', 4);
+        $this->db->where('idPermintaan', $id);
+        $this->db->update('permintaan');
+    }
     public function Delete($id)
     {
         $this->db->set('deleted', 1);

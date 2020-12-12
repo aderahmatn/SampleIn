@@ -101,7 +101,8 @@
                         <hr>
                         <form method="POST" action="<?= base_url('produk/process_file') ?>" autocomplete="off" enctype="multipart/form-data">
                             <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
-                            <input type="text" name="fidproduk" value="<?= $produk->idProduk ?>" style="display: none">
+                            <input type="hidden" name="fidproduk" value="<?= $produk->idProduk ?>" style="display: none">
+                            <input type="hidden" name="fidpermintaan" value="<?= $produk->idPermintaan ?>" style="display: none">
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-group">

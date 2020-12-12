@@ -101,13 +101,34 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <?php if ($this->session->userdata('role') > 3) { ?>
-                            <li class="nav-item">
-                                <a href="<?= base_url('produk') ?>" class="nav-link <?= $this->uri->segment(1) == 'produk' ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-th"></i>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link <?= $this->uri->segment(1) == 'produk' ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-box-open"></i>
                                     <p>
-                                        List Sample
+                                        Sample Produk
+                                        <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('produk') ?>" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>List sample</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('produk/onprogress') ?>" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Sample on progress</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url('produk/finished') ?>" class="nav-link ">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Sample finished</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         <?php } ?>
                         <?php if ($this->session->userdata('role') <= 3) { ?>

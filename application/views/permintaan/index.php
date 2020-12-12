@@ -61,7 +61,6 @@
                                                 <a href="<?= base_url('permintaan/status/') . $key->idPermintaan ?>" class="btn btn-warning btn-sm"><i class="fa fa-check"></i> Accept</a>
                                             <?php } ?>
                                             <?php if ($this->session->userdata('role') == 2) { ?>
-                                                <a href="<?= base_url() . 'permintaan/edit/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Edit</a>
                                                 <button class="btn btn-default btn-sm" onclick="deleteConfirm('<?= base_url() . 'permintaan/delete/' . $key->idPermintaan ?>')">hapus</button>
                                             <?php } ?>
                                         </td>

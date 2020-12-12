@@ -25,9 +25,6 @@
                 <div class="col-12">
                     <h4>
                         <strong>Detail Permintaan</strong>
-                        <?php if ($this->session->userdata('role') == 2) { ?>
-                            <a href="<?= base_url() . 'permintaan/edit/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Edit</a>
-                        <?php } ?>
                         <?php if ($this->session->userdata('role') == 3) {
                             if ($detail->status == 2) { ?>
                                 <a href="<?= base_url() . 'permintaan/update/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Update</a>
