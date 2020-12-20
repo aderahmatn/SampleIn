@@ -158,7 +158,7 @@
                 "info": false,
                 "lengthChange": false,
                 "scrollY": 400,
-                "paging": false,
+                "paging": true,
             });
         });
     </script>
