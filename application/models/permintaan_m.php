@@ -58,7 +58,6 @@ class Permintaan_m extends CI_Model
         $this->tanggal = $post['ftgl'];
         $this->note = $post['fnote'];
         $this->deleted = 0;
-        $this->status = 1;
         $this->sales = $post['fnik'];
         $this->noUrut = $this->CheckNoPeq();
         $this->db->insert($this->_table, $this);

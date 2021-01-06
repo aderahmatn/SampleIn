@@ -55,19 +55,6 @@
                     <b>No. Permintaan :</b> <?= $detail->noPermintaan ?><br>
                     <b>Tanggal : </b> <?= $detail->tanggal ?><br>
                     <b>Sales : </b> <?= ucwords($detail->nama) ?><br>
-                    <b>Status : </b>
-                    <?php if ($detail->status == 1) { ?>
-                        <span class="badge badge-danger">Created</span>
-                    <?php } ?>
-                    <?php if ($detail->status == 2) { ?>
-                        <span class="badge badge-warning">Accepted</span>
-                    <?php } ?>
-                    <?php if ($detail->status == 3) { ?>
-                        <span class="badge badge-primary">On Progress</span>
-                    <?php } ?>
-                    <?php if ($detail->status == 4) { ?>
-                        <span class="badge badge-success">Finished</span>
-                    <?php } ?>
                 </div>
                 <!-- /.col -->
             </div>
@@ -89,6 +76,7 @@
                                 <th>Aplikasi</th>
                                 <th>Due Date</th>
                                 <th>Company</th>
+                                <th>Status</th>
                                 <th>Foto</th>
                             </tr>
                         </thead>
@@ -117,6 +105,18 @@
                                         <?php }
                                         echo company($key->company) ?>
                                     </td>
+                                    <td><?php if ($key->status == 1) { ?>
+                                            <span class="badge badge-danger">Created</span>
+                                        <?php } ?>
+                                        <?php if ($key->status == 2) { ?>
+                                            <span class="badge badge-warning">Accepted</span>
+                                        <?php } ?>
+                                        <?php if ($key->status == 3) { ?>
+                                            <span class="badge badge-primary">On Progress</span>
+                                        <?php } ?>
+                                        <?php if ($key->status == 4) { ?>
+                                            <span class="badge badge-success">Finished</span>
+                                        <?php } ?></td>
                                     <td><a href="#" data-toggle="modal" data-target="#fotoProduk<?= $key->idProduk ?>" class="text-primary">Lihat</a></td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="fotoProduk<?= $key->idProduk ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

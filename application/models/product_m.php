@@ -59,11 +59,6 @@ class Product_m extends CI_Model
                 'label' => 'Company',
                 'rules' => 'required'
             ],
-            // [
-            //     'field' => 'fimage[]',
-            //     'label' => 'Image',
-            //     'rules' => 'required'
-            // ],
         ];
     }
 
@@ -92,6 +87,7 @@ class Product_m extends CI_Model
                 'duedate' => $this->duedate[$index],
                 'deleted' => $this->deleted,
                 'qty' => $this->qty[$index],
+                'status' => 1,
                 'foto' => 'default.png'
             ));
             $index++;

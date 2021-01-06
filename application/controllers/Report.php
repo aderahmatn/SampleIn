@@ -9,8 +9,6 @@ class Report extends CI_Controller
         parent::__construct();
         $this->load->model('report_m');
     }
-
-
     public function index()
     {
         $report = $this->report_m;

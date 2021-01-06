@@ -29,11 +29,11 @@
                         <span class="text-sm text-right"><a href="" class="text-primary">More Info</a></span>
 
                     </div>
-                    <!-- /.info-box-content -->
+
                 </div>
-                <!-- /.info-box -->
+
             </div>
-            <!-- /.col -->
+
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-primary elevation-1"><strong>P</strong></span>
@@ -44,13 +44,13 @@
                         <span class="text-sm text-right"><a href="" class="text-primary">More Info</a></span>
 
                     </div>
-                    <!-- /.info-box-content -->
-                </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
 
-            <!-- fix for small devices only -->
+                </div>
+
+            </div>
+
+
+
             <div class="clearfix hidden-md-up"></div>
 
             <div class="col-12 col-sm-6 col-md-3">
@@ -63,11 +63,11 @@
                         <span class="text-sm text-right"><a href="" class="text-primary">More Info</a></span>
 
                     </div>
-                    <!-- /.info-box-content -->
+
                 </div>
-                <!-- /.info-box -->
+
             </div>
-            <!-- /.col -->
+
             <div class="col-12 col-sm-6 col-md-3">
                 <div class="info-box mb-3">
                     <span class="info-box-icon bg-danger elevation-1"><strong>C</strong></span>
@@ -77,32 +77,32 @@
                         <span class="info-box-number"><?= $created ?></span>
                         <span class="text-sm text-right"><a href="" class="text-primary">More Info</a></span>
                     </div>
-                    <!-- /.info-box-content -->
+
                 </div>
-                <!-- /.info-box -->
+
             </div>
-            <!-- /.col -->
+
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <!-- /.card-header -->
+
                     <div class="card-body">
 
-                        <!-- /.row -->
+
                     </div>
-                    <!-- /.card-body -->
+
                 </div>
-                <!-- /.card -->
+
             </div>
-            <!-- /.col -->
+
         </div>
-        <!-- /.row -->
+
     </div>
-    <!-- /.content -->
+
 </div>
 
-<!--Delete Confirmation-->
+
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
