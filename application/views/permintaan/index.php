@@ -30,6 +30,7 @@
                                     <th>Customer</th>
                                     <th>Tanggal</th>
                                     <th>Sales</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -40,20 +41,20 @@
                                         <td><?= $key->customer ?></td>
                                         <td><?= $key->tanggal ?></td>
                                         <td><?= $key->nama ?></td>
-                                        <!-- <td>
-                                            <?php if ($key->status == 1) { ?>
+                                        <td>
+                                            <?php if ($key->statusPermintaan == 1) { ?>
                                                 <span class="badge badge-danger">Created</span>
                                             <?php } ?>
-                                            <?php if ($key->status == 2) { ?>
+                                            <?php if ($key->statusPermintaan == 2) { ?>
                                                 <span class="badge badge-warning">Accepted</span>
                                             <?php } ?>
-                                            <?php if ($key->status == 3) { ?>
+                                            <?php if ($key->statusPermintaan == 3) { ?>
                                                 <span class="badge badge-primary">On Progress</span>
                                             <?php } ?>
-                                            <?php if ($key->status == 4) { ?>
+                                            <?php if ($key->statusPermintaan == 4) { ?>
                                                 <span class="badge badge-success">Finished</span>
                                             <?php } ?>
-                                        </td> -->
+                                        </td>
                                         <td>
                                             <a href="<?= base_url() . 'permintaan/detail/' . $key->idPermintaan ?>" class="btn btn-default btn-sm">Detail</a>
                                             <?php if ($this->session->userdata('role') == 3) { ?>

@@ -41,16 +41,16 @@
                     <b>Tanggal : </b> <?= $detail->tanggal ?><br>
                     <b>Sales : </b> <?= ucwords($detail->nama) ?><br>
                     <b>Status : </b>
-                    <?php if ($detail->status == 1) { ?>
+                    <?php if ($detail->statusPermintaan == 1) { ?>
                         <span class="badge badge-danger">Created</span>
                     <?php } ?>
-                    <?php if ($detail->status == 2) { ?>
+                    <?php if ($detail->statusPermintaan == 2) { ?>
                         <span class="badge badge-warning">Accepted</span>
                     <?php } ?>
-                    <?php if ($detail->status == 3) { ?>
+                    <?php if ($detail->statusPermintaan == 3) { ?>
                         <span class="badge badge-primary">On Progress</span>
                     <?php } ?>
-                    <?php if ($detail->status == 4) { ?>
+                    <?php if ($detail->statusPermintaan == 4) { ?>
                         <span class="badge badge-success">Finished</span>
                     <?php } ?>
                     <br>
@@ -76,6 +76,7 @@
                         <tbody>
                             <form method="POST" action="" autocomplete="off" enctype="multipart/form-data">
                                 <input type="hidden" name="<?= $this->security->get_csrf_token_name(); ?>" value="<?= $this->security->get_csrf_hash(); ?>" style="display: none">
+                                <input type="hidden" name="fidPermintaan" value="<?= $detail->idPermintaan ?>">
                                 <?php
                                 $no = 1;
                                 foreach ($produk as $key) { ?>
@@ -119,6 +120,13 @@
                                 <?php } ?>
                         </tbody>
                     </table>
+                    <div class="form-group">
+                        <label for="fnotePenerimaan">Note Penerimaan</label>
+                        <input type="text" class="form-control <?= form_error('fnotePenerimaan') ? 'is-invalid' : '' ?> form-control-sm" id="faplikasi" name="fnotePenerimaan" placeholder="Note ">
+                        <div class="invalid-feedback">
+                            <?= form_error('fnotePenerimaan') ?>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.col -->
             </div>

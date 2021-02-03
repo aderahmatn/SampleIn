@@ -59,6 +59,7 @@ class Permintaan_m extends CI_Model
         $this->note = $post['fnote'];
         $this->deleted = 0;
         $this->sales = $post['fnik'];
+        $this->statusPermintaan = 1;
         $this->noUrut = $this->CheckNoPeq();
         $this->db->insert($this->_table, $this);
     }
@@ -69,7 +70,7 @@ class Permintaan_m extends CI_Model
         $this->db->join('users', 'users.nik = permintaan.sales', 'left');
         $this->db->from($this->_table);
         $this->db->where('permintaan.deleted', 0);
-        $this->db->where('permintaan.status', 1);
+        $this->db->where('permintaan.statusPermintaan', 1);
         $query = $this->db->get();
         return $query->result();
     }
@@ -80,7 +81,7 @@ class Permintaan_m extends CI_Model
         $this->db->join('users', 'users.nik = permintaan.sales', 'left');
         $this->db->from($this->_table);
         $this->db->where('permintaan.deleted', 0);
-        $this->db->where('permintaan.status', 2);
+        $this->db->where('permintaan.statusPermintaan', 2);
         $query = $this->db->get();
         return $query->result();
     }
@@ -108,19 +109,19 @@ class Permintaan_m extends CI_Model
     }
     public function update_status($id)
     {
-        $this->db->set('status', 2);
+        $this->db->set('statusPermintaan', 2);
         $this->db->where('idPermintaan', $id);
         $this->db->update('permintaan');
     }
     public function update_status_progress($id)
     {
-        $this->db->set('status', 3);
+        $this->db->set('statusPermintaan', 3);
         $this->db->where('idPermintaan', $id);
         $this->db->update('permintaan');
     }
     public function update_status_finished($id)
     {
-        $this->db->set('status', 4);
+        $this->db->set('statusPermintaan', 4);
         $this->db->where('idPermintaan', $id);
         $this->db->update('permintaan');
     }

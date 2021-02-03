@@ -113,6 +113,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="fnotePengembangan">Note Pengembangan</label>
+                                        <input type="text" class="form-control <?= form_error('fnotePengembangan') ? 'is-invalid' : '' ?> form-control-sm" id="fnotePengembangan" name="fnotePengembangan" required>
+                                        <div class="invalid-feedback">
+                                            <?= form_error('fnotePengembangan') ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="float-right">
                                 <button class="btn btn-primary" type="submit">Submit</button>

@@ -15,6 +15,8 @@ class Pdf extends CI_Controller
     public function report($tgl1, $tgl2)
     {
         $data['result'] = $this->report_m->get_by_range($tgl1, $tgl2);
+        $data['tgl1'] = $tgl1;
+        $data['tgl2'] = $tgl2;
         $this->load->view('report/pdf_report', $data);
     }
 }

@@ -8,8 +8,13 @@ $pdf->SetTitle("Laporan Sample In", 1);
 $pdf->SetFont('Arial', 'B', 16);
 // mencetak string 
 $pdf->Cell(275, 7, 'PT SELAMAT SEMPURNA', 0, 1, 'C');
+$pdf->Image(base_url() . "assets/img/logo.jpeg", 10, 10, 25, 0, 'JPEG');
+
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell(275, 7, 'LAPORAN DATA SAMPLE IN', 0, 1, 'C');
+$pdf->SetFont('Arial', '', 9);
+
+$pdf->Cell(275, 7, 'Sample In Produk Periode Tanggal ' . date_indo($tgl1) . ' Sampai Tanggal ' . date_indo($tgl2), 0, 1, 'C');
 // Memberikan space kebawah agar tidak terlalu rapat
 $pdf->Cell(10, 7, '', 0, 1);
 $pdf->SetFont('Arial', 'B', 10);
@@ -32,4 +37,16 @@ foreach ($result as $key) {
     $pdf->Cell(15, 6, $key->qty, 1, 0);
     $pdf->Cell(20, 6, $key->status, 1, 1);
 }
+$pdf->ln();
+$pdf->ln();
+$pdf->Cell(217, 6, '', 0, 0);
+$pdf->Cell(60, 6, 'Tangerang, ' . date_indo(date('Y-m-d')), 0, 1, 'C');
+$pdf->Cell(217, 6, '', 0, 0);
+$pdf->Cell(60, 6, 'Mengetahui,', 0, 1, 'C');
+$pdf->ln();
+$pdf->ln();
+$pdf->ln();
+$pdf->ln();
+$pdf->Cell(217, 6, '', 0, 0);
+$pdf->Cell(60, 6, 'Manajer', 'T', 1, 'C');
 $pdf->Output();

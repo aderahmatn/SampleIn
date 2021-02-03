@@ -10,6 +10,7 @@ class Produk extends CI_Controller
         $this->load->model('product_m');
         $this->load->helper('permintaan_helper');
         $this->load->model('permintaan_m');
+        $this->load->model('pengembangan_m');
     }
     public function index()
     {
@@ -38,6 +39,7 @@ class Produk extends CI_Controller
     {
         $produkmod = $this->product_m;
         $post = $this->input->post(null, TRUE);
+        $this->pengembangan_m->add_pengembangan($post);
         $this->permintaan_m->update_status_finished($this->input->post('fidpermintaan'));
         $produkmod->save_file($post);
         if ($this->db->affected_rows() > 0) {

@@ -42,16 +42,16 @@
                                         <td><?= $key->tanggal ?></td>
                                         <td><?= $key->nama ?></td>
                                         <td>
-                                            <?php if ($key->status == 1) { ?>
+                                            <?php if ($key->statusPermintaan == 1) { ?>
                                                 <span class="badge badge-danger">Created</span>
                                             <?php } ?>
-                                            <?php if ($key->status == 2) { ?>
+                                            <?php if ($key->statusPermintaan == 2) { ?>
                                                 <span class="badge badge-warning">Accepted</span>
                                             <?php } ?>
-                                            <?php if ($key->status == 3) { ?>
+                                            <?php if ($key->statusPermintaan == 3) { ?>
                                                 <span class="badge badge-primary">On Progress</span>
                                             <?php } ?>
-                                            <?php if ($key->status == 4) { ?>
+                                            <?php if ($key->statusPermintaan == 4) { ?>
                                                 <span class="badge badge-success">Finished</span>
                                             <?php } ?>
                                         </td>

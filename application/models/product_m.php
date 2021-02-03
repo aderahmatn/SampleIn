@@ -202,6 +202,12 @@ class Product_m extends CI_Model
         $this->db->where('idProduk', $id);
         $this->db->update('produk');
     }
+    public function update_status_acc($id)
+    {
+        $this->db->set('status', 2);
+        $this->db->where('idPermintaan', $id);
+        $this->db->update('produk');
+    }
     public function get_by_id_produk($id)
     {
         $this->db->select('*');
@@ -229,6 +235,12 @@ class Product_m extends CI_Model
             $this->db->update('produk', $data);
         }
     }
+    // public function update_status($id)
+    // {
+    //     $this->db->set('statusPermintaan', 2);
+    //     $this->db->where('idPermintaan', $id);
+    //     $this->db->update('permintaan');
+    // }
 }
 
 /* End of file product_m.php */

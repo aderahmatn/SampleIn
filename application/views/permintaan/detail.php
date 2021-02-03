@@ -26,7 +26,7 @@
                     <h4>
                         <strong>Detail Permintaan</strong>
                         <?php if ($this->session->userdata('role') == 3) {
-                            if ($detail->status == 2) { ?>
+                            if ($detail->statusPermintaan == 2) { ?>
                                 <a href="<?= base_url() . 'permintaan/update/' . $detail->idPermintaan ?>" class="btn btn-default btn-sm float-right">Update</a>
                             <?php } else { ?>
                                 <a href="<?= base_url('permintaan/status/') . $detail->idPermintaan ?>" class="btn btn-warning btn-sm float-right"><i class="fa fa-check"></i>Accept</a>
@@ -116,7 +116,8 @@
                                         <?php } ?>
                                         <?php if ($key->status == 4) { ?>
                                             <span class="badge badge-success">Finished</span>
-                                        <?php } ?></td>
+                                        <?php } ?>
+                                    </td>
                                     <td><a href="#" data-toggle="modal" data-target="#fotoProduk<?= $key->idProduk ?>" class="text-primary">Lihat</a></td>
                                     <!-- Modal -->
                                     <div class="modal fade" id="fotoProduk<?= $key->idProduk ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -10,6 +10,7 @@ class Permintaan extends CI_Controller
         check_not_login();
         $this->load->model('customer_m');
         $this->load->model('permintaan_m');
+        $this->load->model('penerimaan_m');
         $this->load->model('product_m');
         $this->load->helper('company_helper');
     }
@@ -68,6 +69,7 @@ class Permintaan extends CI_Controller
     {
         $this->permintaan_m->update_status($id);
         if ($this->db->affected_rows() > 0) {
+            $this->product_m->update_status_acc($id);
             $this->session->set_flashdata('success', 'Permintaan diterima!');
             redirect('permintaan/accepted', 'refresh');
         }
@@ -112,6 +114,7 @@ class Permintaan extends CI_Controller
             $this->template->load('layout', 'permintaan/update', $data);
         } else {
             $post = $this->input->post(null, TRUE);
+            $this->penerimaan_m->add_penerimaan($post);
             $produk->proses_update($post);
             if ($this->db->affected_rows() > 0) {
                 $permintaan  = $this->permintaan_m;
